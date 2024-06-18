@@ -16,15 +16,6 @@ metadata = {
 class OpenTronsProtocol:
     def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
         self.protocol: protocol_api.ProtocolContext = protocol
-        if self.protocol.is_simulating():
-            self.send_message(
-                f"*{self.get_current_time()}*"
-                + "プロトコルをローディングしています。\n"
-                + f"```{metadata['protocolName']}```"
-                + f"```{metadata['author']}```"
-                + f"```{metadata['description']}```"
-                + f"```{metadata['apiLevel']}```"
-            )
 
     def get_tiprack(
         self,
@@ -100,6 +91,15 @@ class OpenTronsProtocol:
                 response.raise_for_status()
             except requests.exceptions.RequestException as e:
                 print(f"Request failed: {e}")
+        else:
+            self.send_message(
+                f"*{self.get_current_time()}*"
+                + "プロトコルをローディングしています。\n"
+                + f"```{metadata['protocolName']}```"
+                + f"```{metadata['author']}```"
+                + f"```{metadata['description']}```"
+                + f"```{metadata['apiLevel']}```"
+            )
         return None
 
     @staticmethod
