@@ -78,7 +78,7 @@ class OpenTronsProtocol:
 
     @staticmethod
     def send_message(message: str) -> None:
-        response = requests.post("http://localhost:8000/Hello, World!")
+        requests.post(f"http://localhost:8000/{message}")
         return None
 
 
