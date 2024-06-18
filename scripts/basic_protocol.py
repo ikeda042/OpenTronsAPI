@@ -13,6 +13,7 @@ metadata = {
 class OpenTronsProtocol:
     def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
         self.protocol: protocol_api.ProtocolContext = protocol
+        self.analysis_mode: bool = protocol.is_simulating()
 
     def get_tiprack(
         self,
