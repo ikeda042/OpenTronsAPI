@@ -107,7 +107,7 @@ class OpenTronsProtocol:
                 f"*{self.messenger.get_current_time()}* 区画6の培地プールから8つのピペット全てに150uLの培地を吸引しました。"
             )
 
-            pipette.dispense(160, plate.wells_by_name()[f"A{n}"])
+            pipette.dispense(150, plate.wells_by_name()[f"A{n}"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画2のマイクロプレートリーダーの{n}列目の全ウェルに150uLの溶液を移動しました。"
             )
