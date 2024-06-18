@@ -1,6 +1,7 @@
 from opentrons import protocol_api
 from typing import Literal
 import requests
+from datetime import datetime
 
 metadata = {
     "protocolName": "OT-2 Basic Protocol",
@@ -49,19 +50,35 @@ class OpenTronsProtocol:
             "p300_multi_gen2", "right", tip_racks=[tiprack]
         )
         plate_1 = self.load_plate(self.protocol, "corning_96_wellplate_360ul_flat", "6")
-
         for i in range(3):
             right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
             self.send_message(
-                "区画7のラックの1列目のチップを取りました。(8チャンネルピペット)"
+                f"*{self.get_current_time()}"
+                + ":"
+                + "区画7のラックの1列目のチップを取りました。(8チャンネルピペット)"
             )
             right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
-            self.send_message("1列目の全ウェルから200uLの溶液を吸引しました。")
+            self.send_message(
+                f"*{self.get_current_time()}*"
+                + ":"
+                + "1列目の全ウェルから200uLの溶液を吸引しました。"
+            )
             right_pipette.dispense(200, plate_1.wells_by_name()["A2"])
-            self.send_message("2列目の全ウェルに200uLの溶液を移動しました。")
+            self.send_message(
+                f"*{self.get_current_time()}*"
+                + ":"
+                + "2列目の全ウェルに200uLの溶液を移動しました。"
+            )
             right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
-            self.send_message("チップを区画7のラックの1列目に戻しました。")
-        self.send_message("全ての処理が完了しました。")
+            self.send_message(
+                f"*{self.get_current_time()}*"
+                + ":"
+                + "チップを区画7のラックの1列目に戻しました。"
+            )
+
+        self.send_message(
+            f"*{self.get_current_time()}*" + ":全ての処理が完了しました。"
+        )
 
     def send_message(self, message: str) -> None:
         if not self.protocol.is_simulating():
@@ -73,6 +90,10 @@ class OpenTronsProtocol:
             except requests.exceptions.RequestException as e:
                 print(f"Request failed: {e}")
         return None
+
+    @staticmethod
+    def get_current_time() -> str:
+        return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
