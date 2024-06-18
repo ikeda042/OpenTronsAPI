@@ -20,6 +20,15 @@
 
 ## プロトコルの作成
 
+### API情報の確認
+
 1. [OpenTrons公式サイト](https://docs.opentrons.com/v2/versioning.html)でAPIバージョンを確認する。
    
-2. [OpenTronsLabwares](https://labware.opentrons.com/)から
+2. [OpenTronsLabwares](https://labware.opentrons.com/)からチップのAPIでの名称の確認等を行う。
+
+### セルの名称と位置
+
+ロボットアームの移動は下記のように大きく12区画に分割されており、API呼び出し時に区画を番号で指定する必要がある。
+
+![](docs_images/3.png)
+
