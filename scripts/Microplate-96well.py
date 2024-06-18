@@ -78,10 +78,12 @@ class OpenTronsProtocol:
         microplate = self.labware_loader.load_plate(
             "corning_96_wellplate_360ul_flat", "2"
         )
+
         self.perform_pipetting_cycle(
             right_pipette,
             tiprack,
             pool,
+            microplate,
         )
 
         self.messenger.send_message(
@@ -100,15 +102,15 @@ class OpenTronsProtocol:
             f"*{self.messenger.get_current_time()}* 区画7のラックの1列目からチップを取りました。"
         )
         for n in range(1, 13):
-            pipette.aspirate(200, pool.wells_by_name()["A1"])
+            pipette.aspirate(150, pool.wells_by_name()["A1"])
             self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画6の培地プールから8つのピペット全てに200uLの培地を吸引しました。"
+                f"*{self.messenger.get_current_time()}* 区画6の培地プールから8つのピペット全てに150uLの培地を吸引しました。"
             )
 
-            pipette.dispense(200, plate.wells_by_name()[f"A{n}"])
+            pipette.dispense(150, plate.wells_by_name()[f"A{n}"])
             pipette.dispense(10, plate.wells_by_name()[f"A{n}"])
             self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画2のマイクロプレートリーダーの{n}列目の全ウェルに200uLの溶液を移動しました。"
+                f"*{self.messenger.get_current_time()}* 区画2のマイクロプレートリーダーの{n}列目の全ウェルに150uLの溶液を移動しました。"
             )
 
         pipette.drop_tip(tiprack.wells_by_name()["A1"])
