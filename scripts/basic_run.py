@@ -2,14 +2,15 @@ from opentrons import protocol_api
 from typing import Annotated, Literal
 
 
-# class OT2BasicProtocol:
-#     def __init__(self) -> None:
-#         self.metadata = {
-#             "protocolName": "Basic Protocol",
-#             "author": "ikeda042",
-#             "description": "Basic Protocol for testing",
-#         }
-#         self.requirements = {"robotType": "OT-2", "apiLevel": "2.18"}
+class OT2BasicProtocol:
+    def __init__(self) -> None:
+        self.metadata = {
+            "protocolName": "Basic Protocol",
+            "author": "ikeda042",
+            "description": "Basic Protocol for testing",
+        }
+        self.requirements = {"robotType": "OT-2", "apiLevel": "2.18"}
+
 
 from typing import Annotated, Literal
 
