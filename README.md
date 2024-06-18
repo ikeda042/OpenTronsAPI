@@ -1,6 +1,11 @@
 # OpenTronsAPI
 [OpenTronsOT-2公式ドキュメント](https://insights.opentrons.com/hubfs/Products/OT-2/OT-2R%20User%20Manual.pdf
 )
+## キャリブレーション
+
+5分程度で終わるため、実験ごとに行った方が良い。
+
+
 
 ## Robotとの接続
 
