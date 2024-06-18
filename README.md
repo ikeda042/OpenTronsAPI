@@ -2,4 +2,4 @@
 
 ## OT-2ソフトウェアダウンロードページ
 
-[https://github.com/ikeda042/OpenTronsAPI](https://github.com/ikeda042/OpenTronsAPI)
+[https://opentrons.com/ot-app/](https://opentrons.com/ot-app/)
