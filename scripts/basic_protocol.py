@@ -67,7 +67,7 @@ class OpenTronsProtocol:
             response = requests.post(
                 "http://10.32.17.122:8000/send_message", json={"message": message}
             )
-            response.raise_for_status()  # Raise an exception if the request failed
+            response.raise_for_status()
         except requests.exceptions.RequestException as e:
             print(f"Request failed: {e}")
         return None
