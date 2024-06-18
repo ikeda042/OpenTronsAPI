@@ -104,4 +104,14 @@ ssh -i ot2_ssh_key root@ROBOT_IP
 
 SSHを使用して新規pythonモジュールを導入する。
 
-https://support.opentrons.com/s/article/Using-Python-packages-in-Python-API-protocols
+1. 下記コマンドでローカル環境に必要モジュールをダウンロードする。
+
+```Bash
+pip download requests
+```
+2. SCPを使用してOT-2サーバーにモジュールを転送する。
+
+```Bash
+scp -O -i ot2_ssh_key *.whl root@169.254.216.225:/tmp/
+```
+
