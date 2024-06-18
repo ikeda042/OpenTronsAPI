@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 JST: timezone = timezone(timedelta(hours=+9))
 
 metadata = {
-    "protocolName": "OT-2 Basic Protocol",
+    "protocolName": "Microplate 96-well Protocol",
     "author": "ikeda042",
     "description": "Basic Protocol for testing",
     "apiLevel": "2.18",
