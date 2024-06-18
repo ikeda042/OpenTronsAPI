@@ -18,4 +18,4 @@ def run(protocol: protocol_api.ProtocolContext):
     right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
     right_pipette.aspirate(100, plate["A1"])
     right_pipette.dispense(100, plate["B2"])
-    right_pipette.drop_tip(tiprack.wells_by_name()["B12"])
+    right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
