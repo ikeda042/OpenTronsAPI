@@ -8,3 +8,8 @@
 4. [OT-2](https://opentrons.com/ot-app/)を起動し、Devicesから下記のデバイスがAvailableになっていることを確認する。この時、Not availableになっている場合は、robot、アプリケーション共に再起動する。
 
 ![](docs_images/1.png)
+
+5. デバイス右上の3つの点部分を選択し、Robot settingsセクションへ移動する。
+
+![](docs_images/2.png)
+
