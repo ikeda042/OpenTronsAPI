@@ -3,10 +3,10 @@ import json
 import aiohttp
 
 
-async def send_message():
+async def send_message(text: str):
     webhook_url = os.environ["SLACK_WEBHOOK_URL"]
     print(webhook_url)
-    message = {"text": "payload test"}
+    message = {"text": text}
 
     async with aiohttp.ClientSession() as session:
         async with session.post(
