@@ -1,9 +1,7 @@
 from opentrons import protocol_api
 from typing import Literal
 import requests
-import os
 
-LOCAL_IP = os.getenv("LOCAL_IP")
 metadata = {
     "protocolName": "OT-2 Basic Protocol",
     "author": "ikeda042",
@@ -135,10 +133,3 @@ class OpenTronsProtocol:
 def run(protocol: protocol_api.ProtocolContext) -> None:
     ot = OpenTronsProtocol(protocol)
     ot.exec()
-    return None
-
-
-def run(protocol: protocol_api.ProtocolContext) -> None:
-    ot = OpenTronsProtocol(protocol)
-    ot.exec()
-    return None
