@@ -66,7 +66,7 @@ class OpenTronsProtocol:
             self.send_message(
                 f"*{self.get_current_time()}*"
                 + ":"
-                + "区画7のラックの1列目のチップを取りました。(8チャンネルピペット)"
+                + "区画7のラックの1列目のチップを取りました。"
             )
             right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
             self.send_message(
