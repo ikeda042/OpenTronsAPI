@@ -34,6 +34,8 @@
 
 ![](docs_images/cal4.png)
 
+4. `Tip Length calibration`および`Pipette Offset calibration`の２つについて、Recalibrateを選択してキャリブレーションを行う。操作の指示は画面に出てくるためここでは省略する。
+
 
 
 
