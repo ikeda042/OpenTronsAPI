@@ -103,3 +103,8 @@ ROBOT_IP:31950/server/ssh_keys
 ssh -i ot2_ssh_key root@ROBOT_IP
 ```
 
+## サードパーティモジュールの導入
+
+SSHを使用して新規pythonモジュールを導入する。
+
+https://support.opentrons.com/s/article/Using-Python-packages-in-Python-API-protocols
