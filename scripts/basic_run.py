@@ -18,9 +18,9 @@ def run(protocol: protocol_api.ProtocolContext):
     )
     right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
     for i in range(12):
-        right_pipette.aspirate(100, tray[f"A{i%12+1}"])
-        right_pipette.dispense(100, plate[f"A{i%12+1}"])
+        right_pipette.aspirate(200, tray[f"A{i%12+1}"])
+        right_pipette.dispense(220, plate[f"A{i%12+1}"])
     for i in range(12):
         right_pipette.aspirate(100, plate[f"A{i%12+1}"])
-        right_pipette.dispense(100, plate_2[f"A{i%12+1}"])
+        right_pipette.dispense(110, plate_2[f"A{i%12+1}"])
     right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
