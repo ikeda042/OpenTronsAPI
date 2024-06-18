@@ -88,7 +88,7 @@ ssh-keygen -f ot2_ssh_key
 cat ot2_ssh_key.pub
 ```
 
-1. CurlでOT-2に公開鍵を登録する。
+1. CurlでOT-2に公開鍵を登録する。デフォルトポートは31950
 
 ```bash
 curl \
