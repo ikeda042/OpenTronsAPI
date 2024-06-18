@@ -104,7 +104,7 @@ class OpenTronsProtocol:
     ) -> protocol_api:
         return protocol.load_instrument(pipette_type, mount, tip_racks=[tiprack])
 
-    def exec(
+    async def exec(
         self,
     ) -> None:
         tiprack = self.get_tiprack(self.protocol, "opentrons_96_tiprack_300ul", "7")
@@ -113,13 +113,13 @@ class OpenTronsProtocol:
         )
         plate_1 = self.load_plate(self.protocol, "corning_96_wellplate_360ul_flat", "6")
         right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
-        self.send_message("Tip picked up.")
+        await self.send_message("Tip picked up.")
         right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
-        self.send_message("Aspiration complete.")
+        await self.send_message("Aspiration complete.")
         right_pipette.dispense(200, plate_1.wells_by_name()["A2"])
-        self.send_message("A1 to A2 transfer complete.")
+        await self.send_message("A1 to A2 transfer complete.")
         right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
-        self.send_message("Tip dropped.")
+        await self.send_message("Tip dropped.")
 
     @staticmethod
     def send_message(message: str) -> None:
@@ -130,6 +130,6 @@ class OpenTronsProtocol:
         return None
 
 
-def run(protocol: protocol_api.ProtocolContext) -> None:
+async def run(protocol: protocol_api.ProtocolContext) -> None:
     ot = OpenTronsProtocol(protocol)
-    ot.exec()
+    await ot.exec()
