@@ -100,6 +100,13 @@ ROBOT_IP:31950/server/ssh_keys
 ssh -i ot2_ssh_key root@ROBOT_IP
 ```
 
+## 接続元のIPアドレスの確認
+
+SSH接続後に下記を実行することで、接続元のIPアドレスがわかる。
+
+```bash
+echo $SSH_CLIENT
+```
 ## サードパーティモジュールの導入
 
 SSHを使用して新規pythonモジュールを導入する。
