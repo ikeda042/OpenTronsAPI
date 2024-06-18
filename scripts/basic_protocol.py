@@ -48,15 +48,18 @@ class OpenTronsProtocol:
         right_pipette = self.protocol.load_instrument(
             "p300_multi_gen2", "right", tip_racks=[tiprack]
         )
-        plate_1 = self.load_plate(self.protocol, "corning_96_wellplate_360ul_flat", "6")
-        right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
-        self.send_message("Tip picked up.")
-        right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
-        self.send_message("Aspiration complete.")
-        right_pipette.dispense(200, plate_1.wells_by_name()["A2"])
-        self.send_message("A1 to A2 transfer complete.")
-        right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
-        self.send_message("Tip dropped.")
+        for i in range(3):
+            plate_1 = self.load_plate(
+                self.protocol, "corning_96_wellplate_360ul_flat", "6"
+            )
+            right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
+            self.send_message("Tip picked up.")
+            right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
+            self.send_message("Aspiration complete.")
+            right_pipette.dispense(200, plate_1.wells_by_name()["A2"])
+            self.send_message("A1 to A2 transfer complete.")
+            right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
+            self.send_message("Tip dropped.")
 
     @staticmethod
     def send_message(message: str) -> None:
