@@ -22,10 +22,6 @@
 
 5分程度で終わるため、実験ごとに行った方が良い。
 
-下記画面で、それぞれleft,right mountについてキャリブレーションを行う。
-
-![](docs_images/cal1.png)
-
 1. はじめにRobot settingsを開く。
 
 ![](docs_images/cal2.png)
@@ -33,6 +29,11 @@
 2. `Launch caliration` を選択する。
 
 ![](docs_images/cal3.png)
+
+3. 下記画面から`left mount`を選択する。
+
+![](docs_images/cal4.png)
+
 
 
 
