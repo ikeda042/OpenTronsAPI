@@ -1,6 +1,10 @@
 # OpenTronsAPI
 [OpenTronsOT-2公式ドキュメント](https://insights.opentrons.com/hubfs/Products/OT-2/OT-2R%20User%20Manual.pdf
 )
+
+## Pythonセットアップ
+非同期ライブラリaionotifyの互換性によって、
+
 ## Robotとの接続
 
 以下キャリブレーションは完了しているものとする。
@@ -65,3 +69,9 @@ requirements: dict[str, str] = {"robotType": "OT-2", "apiLevel": "2.11"}
 
 ![](docs_images/tutorial1-2.png)
 
+
+## SSHでの接続
+
+有線接続の場合はUSBを、Wi-Fi接続の場合はワイヤレスネットワーク（ローカル)を通してSSH接続を行える。
+
+### 公開鍵認証の設定方法
