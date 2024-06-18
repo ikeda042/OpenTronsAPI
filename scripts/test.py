@@ -3,7 +3,7 @@ from typing import Literal
 import requests
 
 # 接続元のPCのIPアドレスとFastAPIアプリケーションのポート番号を指定
-url = "http://169.254.176.52:8000/"
+url = "http://10.32.17.122:8000/"
 
 # GETリクエストを送信
 
