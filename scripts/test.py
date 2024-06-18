@@ -31,7 +31,7 @@ def load_pipette(
     pipette_type: Literal["p300_multi_gen2", "p20_multi_gen2"],
     tiprack: protocol_api.labware.Labware,
     mount: Literal["left", "right"],
-) -> protocol_api.instruments.Pipette:
+) -> protocol_api:
     return protocol.load_instrument(pipette_type, mount, tip_racks=[tiprack])
 
 
