@@ -14,7 +14,7 @@ def run(protocol: protocol_api.ProtocolContext):
     right_pipette = protocol.load_instrument(
         "p300_multi_gen2", "right", tip_racks=[tiprack]
     )
-    for i in range(40):
+    for i in range(50):
         right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
         right_pipette.aspirate(100, plate["A1"])
         right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
