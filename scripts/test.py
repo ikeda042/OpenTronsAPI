@@ -61,7 +61,10 @@ class OpenTronsProtocol:
 
     @staticmethod
     def send_message(message: str) -> None:
-        requests.post(f"http://10.32.17.122:8000/{message}")
+        try:
+            requests.post(f"http://10.32.17.122:8000/{message}")
+        except requests.exceptions.RequestException as e:
+            print(e)
         return None
 
 
