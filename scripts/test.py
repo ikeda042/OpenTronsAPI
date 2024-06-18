@@ -2,8 +2,6 @@ from opentrons import protocol_api
 from typing import Literal
 import requests
 
-url = "http://10.32.17.122:8000/"
-
 
 metadata = {
     "protocolName": "OT-2 Basic Protocol",
@@ -11,21 +9,6 @@ metadata = {
     "description": "Basic Protocol for testing",
     "apiLevel": "2.11",
 }
-
-
-# def run(protocol: protocol_api.ProtocolContext):
-#     tiprack = get_tiprack(protocol, "opentrons_96_tiprack_300ul", "7")
-#     right_pipette = protocol.load_instrument(
-#         "p300_multi_gen2", "right", tip_racks=[tiprack]
-#     )
-#     plate_1 = load_plate(protocol, "corning_96_wellplate_360ul_flat", "6")
-#     right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
-#     response = requests.get(url)
-#     right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
-#     response = requests.get(url)
-#     right_pipette.dispense(200, plate_1.wells_by_name()["A2"])
-#     response = requests.get(url)
-#     right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
 
 
 class OpenTronsProtocol:
@@ -78,7 +61,7 @@ class OpenTronsProtocol:
 
     @staticmethod
     def send_message(message: str) -> None:
-        requests.post(f"http://localhost:8000/{message}")
+        requests.post(f"http://10.32.17.122:8000/{message}")
         return None
 
 
