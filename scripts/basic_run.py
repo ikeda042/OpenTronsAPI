@@ -25,7 +25,7 @@ def run(protocol: protocol_api.ProtocolContext):
     )
 
     for i in range(40):
-        right_pipette.pick_up_tip(tiprack.wells_by_name()["A3"])
+        right_pipette.pick_up_tip(tiprack.wells_by_name()["A4"])
         left_pipette.pick_up_tip(tiprack2.wells_by_name()["A1"])
         for i in range(4):
             right_pipette.aspirate(200, tray[f"A{i%12+4}"])
