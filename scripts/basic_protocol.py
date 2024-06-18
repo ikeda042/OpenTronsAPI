@@ -51,17 +51,16 @@ class OpenTronsProtocol:
         plate_1 = self.load_plate(self.protocol, "corning_96_wellplate_360ul_flat", "6")
 
         for i in range(3):
-            plate_1 = self.load_plate(
-                self.protocol, "corning_96_wellplate_360ul_flat", "6"
-            )
             right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
-            self.send_message("チップを取りました。(8チャンネルピペット)")
+            self.send_message(
+                "区画7のラックの1列目のチップを取りました。(8チャンネルピペット)"
+            )
             right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
             self.send_message("1列目の全ウェルから200uLの溶液を吸引しました。")
             right_pipette.dispense(200, plate_1.wells_by_name()["A2"])
             self.send_message("2列目の全ウェルに200uLの溶液を移動しました。")
             right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
-            self.send_message("Tip dropped.")
+            self.send_message("チップを区画7のラックの1列目に戻しました。")
         self.send_message("全ての処理が完了しました。")
 
     @staticmethod
