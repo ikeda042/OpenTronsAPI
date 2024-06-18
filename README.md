@@ -115,3 +115,10 @@ pip download requests
 scp -O -i ot2_ssh_key *.whl root@169.254.216.225:/tmp/
 ```
 
+3. OT-2に接続し、pythonモジュールをインストールする.
+
+```bash
+ssh -i ot2_ssh_key root@169.254.216.225
+cd /tmp
+pip install certifi*.whl
+```
