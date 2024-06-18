@@ -9,8 +9,8 @@ metadata = {
 
 
 def run(protocol: protocol_api.ProtocolContext):
-    plate = protocol.load_labware("corning_96_wellplate_360ul_flat", "2")
-    tiprack = protocol.load_labware("opentrons_96_tiprack_300ul", "1")
+    plate = protocol.load_labware("corning_96_wellplate_360ul_flat", "1")
+    tiprack = protocol.load_labware("opentrons_96_tiprack_300ul", "8")
     right_pipette = protocol.load_instrument(
         "p300_multi_gen2", "right", tip_racks=[tiprack]
     )
