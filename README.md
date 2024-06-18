@@ -76,16 +76,24 @@ requirements: dict[str, str] = {"robotType": "OT-2", "apiLevel": "2.11"}
 
 ### 公開鍵認証
 
-下記コマンドでSSHキーペアを作成する。
+1. 下記コマンドでSSHキーペアを作成する。
 
 ```bash
 ssh-keygen -f ot2_ssh_key
 ```
 
-公開鍵を確認する。
+2. 下記コマンドで公開鍵を確認する。
 
 ```bash
 cat ot2_ssh_key.pub
 ```
 
+1. CurlでOT-2に公開鍵を登録する。
+
+```bash
+curl \
+-H 'Content-Type: application/json' \
+-d "{\"key\":\"$(cat ot2_ssh_key.pub)\"}" \
+ROBOT_IP:31950/server/ssh_keys
+```
 
