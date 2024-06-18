@@ -2,10 +2,7 @@ from opentrons import protocol_api
 from typing import Literal
 import requests
 
-# 接続元のPCのIPアドレスとFastAPIアプリケーションのポート番号を指定
 url = "http://10.32.17.122:8000/"
-
-# GETリクエストを送信
 
 
 metadata = {
