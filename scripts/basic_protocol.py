@@ -13,7 +13,6 @@ metadata = {
 class OpenTronsProtocol:
     def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
         self.protocol: protocol_api.ProtocolContext = protocol
-        self.analysis_mode: bool = protocol.is_simulating()
 
     def get_tiprack(
         self,
@@ -64,15 +63,15 @@ class OpenTronsProtocol:
             self.send_message("チップを区画7のラックの1列目に戻しました。")
         self.send_message("全ての処理が完了しました。")
 
-    @staticmethod
-    def send_message(message: str) -> None:
-        try:
-            response = requests.post(
-                "http://10.32.17.122:8000/send_message", json={"message": message}
-            )
-            response.raise_for_status()
-        except requests.exceptions.RequestException as e:
-            print(f"Request failed: {e}")
+    def send_message(self, message: str) -> None:
+        if not self.protocol.is_simulating():
+            try:
+                response = requests.post(
+                    "http://10.32.17.122:8000/send_message", json={"message": message}
+                )
+                response.raise_for_status()
+            except requests.exceptions.RequestException as e:
+                print(f"Request failed: {e}")
         return None
 
 
