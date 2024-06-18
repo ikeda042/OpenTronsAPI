@@ -4,9 +4,9 @@ import uvicorn
 app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+@app.get("/{message}")
+async def send_message(message: str):
+    return {"message": message}
 
 
 if __name__ == "__main__":

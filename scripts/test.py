@@ -58,3 +58,19 @@ class OpenTronsProtocol:
         mount: Literal["left", "right"],
     ) -> protocol_api:
         return protocol.load_instrument(pipette_type, mount, tip_racks=[tiprack])
+
+    def movements(
+        self,
+    ) -> None:
+        tiprack = self.get_tiprack(self.protocol, "opentrons_96_tiprack_300ul", "7")
+        right_pipette = self.protocol.load_instrument(
+            "p300_multi_gen2", "right", tip_racks=[tiprack]
+        )
+        plate_1 = self.load_plate(self.protocol, "corning_96_wellplate_360ul_flat", "6")
+        right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
+        response = requests.get(url)
+        right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
+        response = requests.get(url)
+        right_pipette.dispense(200, plate_1.wells_by_name()["A2"])
+        response = requests.get(url)
+        right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
