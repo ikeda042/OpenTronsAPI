@@ -3,7 +3,7 @@ import json
 import aiohttp
 
 
-async def send_message(text: str):
+async def send_message_func(text: str):
     webhook_url = os.environ["SLACK_WEBHOOK_URL"]
     print(webhook_url)
     message = {"text": text}
