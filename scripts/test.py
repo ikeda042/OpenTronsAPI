@@ -13,19 +13,19 @@ metadata = {
 }
 
 
-def run(protocol: protocol_api.ProtocolContext):
-    tiprack = get_tiprack(protocol, "opentrons_96_tiprack_300ul", "7")
-    right_pipette = protocol.load_instrument(
-        "p300_multi_gen2", "right", tip_racks=[tiprack]
-    )
-    plate_1 = load_plate(protocol, "corning_96_wellplate_360ul_flat", "6")
-    right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
-    response = requests.get(url)
-    right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
-    response = requests.get(url)
-    right_pipette.dispense(200, plate_1.wells_by_name()["A2"])
-    response = requests.get(url)
-    right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
+# def run(protocol: protocol_api.ProtocolContext):
+#     tiprack = get_tiprack(protocol, "opentrons_96_tiprack_300ul", "7")
+#     right_pipette = protocol.load_instrument(
+#         "p300_multi_gen2", "right", tip_racks=[tiprack]
+#     )
+#     plate_1 = load_plate(protocol, "corning_96_wellplate_360ul_flat", "6")
+#     right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
+#     response = requests.get(url)
+#     right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
+#     response = requests.get(url)
+#     right_pipette.dispense(200, plate_1.wells_by_name()["A2"])
+#     response = requests.get(url)
+#     right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
 
 
 class OpenTronsProtocol:
@@ -59,7 +59,7 @@ class OpenTronsProtocol:
     ) -> protocol_api:
         return protocol.load_instrument(pipette_type, mount, tip_racks=[tiprack])
 
-    def movements(
+    def exec(
         self,
     ) -> None:
         tiprack = self.get_tiprack(self.protocol, "opentrons_96_tiprack_300ul", "7")
@@ -68,9 +68,21 @@ class OpenTronsProtocol:
         )
         plate_1 = self.load_plate(self.protocol, "corning_96_wellplate_360ul_flat", "6")
         right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
-        response = requests.get(url)
+        self.send_message("Tip picked up.")
         right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
-        response = requests.get(url)
+        self.send_message("Aspiration complete.")
         right_pipette.dispense(200, plate_1.wells_by_name()["A2"])
-        response = requests.get(url)
+        self.send_message("A1 to A2 transfer complete.")
         right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
+        self.send_message("Tip dropped.")
+
+    @staticmethod
+    def send_message(message: str) -> None:
+        response = requests.post("http://localhost:8000/Hello, World!")
+        return None
+
+
+def run(protocol: protocol_api.ProtocolContext) -> None:
+    ot = OpenTronsProtocol(protocol)
+    ot.exec()
+    return None

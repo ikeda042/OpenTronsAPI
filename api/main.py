@@ -4,7 +4,7 @@ import uvicorn
 app = FastAPI()
 
 
-@app.get("/{message}")
+@app.post("/{message}")
 async def send_message(message: str):
     return {"message": message}
 
