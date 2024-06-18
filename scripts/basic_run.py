@@ -1,6 +1,7 @@
 from opentrons import protocol_api, types
 from typing import Annotated, Literal
 from opentrons import simulate, execute
+import requests
 
 
 class OT2BasicProtocol:
@@ -11,6 +12,9 @@ class OT2BasicProtocol:
             "description": "Basic Protocol for testing",
         }
         self.requirements = {"robotType": "OT-2", "apiLevel": "2.18"}
+        self.
+ROBOT_IP = "169.254.216.225"
+ROBOT_PORT = "31950"
 
 
 PipetteType: str = Annotated[str, Literal["p20_multi_gen2", "p300_multi_gen2"]]
