@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
-from slack import send_message
+from slack import send_message_func
 
 
 class Message(BaseModel):
@@ -13,7 +13,7 @@ app = FastAPI()
 
 @app.post("/send_message")
 async def send_message(msg: Message):
-
+    await send_message_func(msg.message)
     return {"message": msg.message}
 
 
