@@ -6,7 +6,7 @@ metadata = {
     "protocolName": "OT-2 Basic Protocol",
     "author": "ikeda042",
     "description": "Basic Protocol for testing",
-    "apiLevel": "2.11",
+    "apiLevel": "2.18",
 }
 
 
