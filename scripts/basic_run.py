@@ -20,7 +20,7 @@ metadata = {
     "description": "Basic Protocol for testing",
 }
 
-requirements = {"robotType": "OT-2", "apiLevel": "2.18"}
+requirements = {"robotType": "OT-2", "apiLevel": "2.11"}
 
 
 # protocol run function
