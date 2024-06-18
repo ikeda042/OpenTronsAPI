@@ -53,7 +53,7 @@ class OpenTronsProtocol:
         for i in range(3):
             right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
             self.send_message(
-                f"*{self.get_current_time()}"
+                f"*{self.get_current_time()}*"
                 + ":"
                 + "区画7のラックの1列目のチップを取りました。(8チャンネルピペット)"
             )
