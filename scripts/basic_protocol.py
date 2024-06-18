@@ -92,7 +92,7 @@ class OpenTronsProtocol:
             except requests.exceptions.RequestException as e:
                 print(f"Request failed: {e}")
         else:
-            self.send_message(
+            message = (
                 f"*{self.get_current_time()}*"
                 + "プロトコルをローディングしています。\n"
                 + f"```{metadata['protocolName']}```"
@@ -100,6 +100,13 @@ class OpenTronsProtocol:
                 + f"```{metadata['description']}```"
                 + f"```{metadata['apiLevel']}```"
             )
+            try:
+                response = requests.post(
+                    "http://localhost:8000/send_message", json={"message": message}
+                )
+                response.raise_for_status()
+            except requests.exceptions.RequestException as e:
+                print(f"Request failed: {e}")
         return None
 
     @staticmethod
