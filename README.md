@@ -88,12 +88,18 @@ ssh-keygen -f ot2_ssh_key
 cat ot2_ssh_key.pub
 ```
 
-1. CurlでOT-2に公開鍵を登録する。デフォルトポートは31950
+3. CurlでOT-2に公開鍵を登録する。デフォルトポートは31950
 
 ```bash
 curl \
 -H 'Content-Type: application/json' \
 -d "{\"key\":\"$(cat ot2_ssh_key.pub)\"}" \
 ROBOT_IP:31950/server/ssh_keys
+```
+
+4. ローカルIPアドレスを指定してSSH接続する。
+
+```bash
+ssh -i ot2_ssh_key root@ROBOT_IP
 ```
 
