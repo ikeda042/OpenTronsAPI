@@ -1,5 +1,6 @@
 from opentrons import protocol_api, types
 from typing import Annotated, Literal
+from opentrons import simulate, execute
 
 
 class OT2BasicProtocol:
@@ -25,7 +26,9 @@ requirements: dict[str, str] = {"robotType": "OT-2", "apiLevel": "2.11"}
 
 
 def run(protocol: protocol_api.ProtocolContext):
-    plate = protocol.load_labware("corning_96_wellplate_360ul_flat", "1")
+    plate = protocol.load_labware("corning_96_wellplate_360ul_flat", "2")
+    tiprack = protocol.load_labware("opentrons_96_tiprack_300ul", "1")
+    right_pipette = protocol.load_instrument("")
 
     # pipettes
     left_pipette = protocol.load_instrument(
