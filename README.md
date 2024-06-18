@@ -74,4 +74,18 @@ requirements: dict[str, str] = {"robotType": "OT-2", "apiLevel": "2.11"}
 
 有線接続の場合はUSBを、Wi-Fi接続の場合はワイヤレスネットワーク（ローカル)を通してSSH接続を行える。
 
-### 公開鍵認証の設定方法
+### 公開鍵認証
+
+下記コマンドでSSHキーペアを作成する。
+
+```bash
+ssh-keygen -f ot2_ssh_key
+```
+
+公開鍵を確認する。
+
+```bash
+cat ot2_ssh_key.pub
+```
+
+
