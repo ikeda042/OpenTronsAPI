@@ -22,7 +22,7 @@
 
 ### API情報の確認
 
-1. [OpenTrons公式サイト](https://docs.opentrons.com/v2/versioning.html)でAPIバージョンを確認する。
+1. [OpenTrons公式サイト](https://docs.opentrons.com/v2/versioning.html)でAPIバージョンを確認する。本ドキュメントではAPIバージョンを2.11に固定する。
    
 2. [OpenTronsLabwares](https://labware.opentrons.com/)からチップのAPIでの名称の確認等を行う。
 
@@ -36,3 +36,4 @@
 
 ![](docs_images/4.png)
 
+### 
