@@ -14,13 +14,13 @@ PipetteType = Annotated[str, Literal["p20_multi_gen2", "p300_multi_gen2"]]
 #         self.requirements = {"robotType": "OT-2", "apiLevel": "2.18"}
 
 
-metadata = {
+metadata: dict[str, str] = {
     "protocolName": "OT-2 Basic Protocol",
     "author": "ikeda042",
     "description": "Basic Protocol for testing",
 }
 
-requirements = {"robotType": "OT-2", "apiLevel": "2.11"}
+requirements: dict[str, str] = {"robotType": "OT-2", "apiLevel": "2.11"}
 
 
 # protocol run function
