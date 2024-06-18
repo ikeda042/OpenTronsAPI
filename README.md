@@ -2,9 +2,6 @@
 [OpenTronsOT-2公式ドキュメント](https://insights.opentrons.com/hubfs/Products/OT-2/OT-2R%20User%20Manual.pdf
 )
 
-## Pythonセットアップ
-非同期ライブラリaionotifyの互換性によって、
-
 ## Robotとの接続
 
 以下キャリブレーションは完了しているものとする。
