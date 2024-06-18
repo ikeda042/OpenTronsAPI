@@ -24,7 +24,7 @@ def run(protocol: protocol_api.ProtocolContext):
         "p20_multi_gen2", "left", tip_racks=[tiprack]
     )
 
-    for i in range(40):
+    for i in range(50):
         right_pipette.pick_up_tip(tiprack.wells_by_name()["A4"])
         left_pipette.pick_up_tip(tiprack2.wells_by_name()["A1"])
         for i in range(4):
