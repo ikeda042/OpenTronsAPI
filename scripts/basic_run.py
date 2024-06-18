@@ -1,14 +1,26 @@
 from opentrons import protocol_api
+from typing import Annotated, Literal
+
+PipetteType = Annotated[str, Literal["p20_multi_gen2", "p300_multi_gen2"]]
 
 
-class BasicRunProtocol:
-    def __init__(self) -> None:
-        self.metadata = {
-            "protocolName": "Basic Protocol",
-            "author": "ikeda042",
-            "description": "Basic Protocol for testing",
-        }
-        self.requirements = {"apiLevel": "2.11"}
+# class OT2BasicProtocol:
+#     def __init__(self) -> None:
+#         self.metadata = {
+#             "protocolName": "Basic Protocol",
+#             "author": "ikeda042",
+#             "description": "Basic Protocol for testing",
+#         }
+#         self.requirements = {"robotType": "OT-2", "apiLevel": "2.18"}
+
+
+metadata = {
+    "protocolName": "Basic Protocol",
+    "author": "ikeda042",
+    "description": "Basic Protocol for testing",
+}
+
+requirements = {"robotType": "OT-2", "apiLevel": "2.18"}
 
 
 # protocol run function
@@ -20,7 +32,7 @@ def run(protocol: protocol_api.ProtocolContext):
 
     # pipettes
     left_pipette = protocol.load_instrument(
-        "flex_1channel_1000", mount="left", tip_racks=[tiprack]
+        "p300_multi_gen2", mount="left", tip_racks=[tiprack]
     )
 
     # commands
