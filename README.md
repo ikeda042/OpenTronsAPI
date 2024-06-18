@@ -34,7 +34,7 @@
 
 from typing import Annotated, Literal
 
-PipetteType = Annotated[str, Literal["p20_multi_gen2", "p300_multi_gen2"]]
+PipetteType: str = Annotated[str, Literal["p20_multi_gen2", "p300_multi_gen2"]]
 
 metadata: dict[str, str] = {
     "protocolName": "OT-2 Basic Protocol",
