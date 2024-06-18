@@ -1,13 +1,11 @@
-from opentrons import protocol_api, types
-from opentrons import simulate, execute
+from opentrons import protocol_api
 
-metadata: dict[str, str] = {
+metadata = {
     "protocolName": "OT-2 Basic Protocol",
     "author": "ikeda042",
     "description": "Basic Protocol for testing",
+    "apiLevel": "2.11",
 }
-
-requirements: dict[str, str] = {"robotType": "OT-2", "apiLevel": "2.11"}
 
 
 def run(protocol: protocol_api.ProtocolContext):
