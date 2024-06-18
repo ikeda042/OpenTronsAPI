@@ -1,20 +1,6 @@
 from opentrons import protocol_api, types
 from opentrons import simulate, execute
 
-
-# class OT2BasicProtocol:
-#     def __init__(self) -> None:
-#         self.metadata = {
-#             "protocolName": "Basic Protocol",
-#             "author": "ikeda042",
-#             "description": "Basic Protocol for testing",
-#         }
-#         self.requirements = {"robotType": "OT-2", "apiLevel": "2.18"}
-#         self.
-
-# PipetteType: str = Annotated[str, Literal["p20_multi_gen2", "p300_multi_gen2"]]
-# MountType: str = Annotated[str, Literal["left", "right"]]
-
 metadata: dict[str, str] = {
     "protocolName": "OT-2 Basic Protocol",
     "author": "ikeda042",
