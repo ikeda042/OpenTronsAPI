@@ -36,4 +36,11 @@
 
 ![](docs_images/4.png)
 
-### 
+### チップラックの配置
+
+今回は下記のように区画1に`300µL Tip Rack`を配置する。
+
+![](docs_images/tutorial1-1.jpeg)
+
+ここで、ロボットアームに取り付けられたPipetteTypeを下記画面から確かめる。
+
