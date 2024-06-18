@@ -1,15 +1,8 @@
 # OpenTronsAPI
 [OpenTronsOT-2公式ドキュメント](https://insights.opentrons.com/hubfs/Products/OT-2/OT-2R%20User%20Manual.pdf
 )
-## キャリブレーション
-
-5分程度で終わるため、実験ごとに行った方が良い。
-
-
 
 ## Robotとの接続
-
-以下キャリブレーションは完了しているものとする。
 
 1. 背面左のスイッチをON(-)にする。
 2. Heartbeat (前面左の青色ランプの点滅が点灯に変わるまで待つ)
@@ -23,6 +16,14 @@
 ![](docs_images/2.png)
 
 6. Lightsトグルからライトの点灯を確認する。(ライト点灯は接続チェックを兼ねる。)
+
+
+## キャリブレーション
+
+5分程度で終わるため、実験ごとに行った方が良い。
+
+![](docs_images/cal1.png)
+
 
 ## プロトコルの作成
 
