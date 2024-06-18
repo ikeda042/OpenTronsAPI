@@ -10,7 +10,7 @@ metadata = {
 
 def run(protocol: protocol_api.ProtocolContext):
     plate = protocol.load_labware("corning_96_wellplate_360ul_flat", "1")
-    tray = protocol.load_labware("corning_96_wellplate_360ul_flat", "4")
+    tray = protocol.load_labware("corning_96_wellplate_360ul_flat", "6")
     plate_2 = protocol.load_labware("corning_96_wellplate_360ul_flat", "2")
     tiprack = protocol.load_labware("opentrons_96_tiprack_300ul", "7")
     right_pipette = protocol.load_instrument(
