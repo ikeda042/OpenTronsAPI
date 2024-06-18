@@ -30,6 +30,20 @@
 
 今回使用するメタデータは以下のように定義する。
 
+```Python
+
+from typing import Annotated, Literal
+
+PipetteType = Annotated[str, Literal["p20_multi_gen2", "p300_multi_gen2"]]
+
+metadata: dict[str, str] = {
+    "protocolName": "OT-2 Basic Protocol",
+    "author": "ikeda042",
+    "description": "Basic Protocol for testing",
+}
+
+requirements: dict[str, str] = {"robotType": "OT-2", "apiLevel": "2.11"}
+```
 
 ### セルの名称と位置
 
