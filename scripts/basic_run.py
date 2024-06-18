@@ -18,12 +18,24 @@ def run(protocol: protocol_api.ProtocolContext):
     right_pipette = protocol.load_instrument(
         "p300_multi_gen2", "right", tip_racks=[tiprack]
     )
-    right_pipette.pick_up_tip(tiprack.wells_by_name()["A3"])
+
+    tiprack2 = protocol.load_labware("opentrons_96_tiprack_20ul", "8")
+    left_pipette = protocol.load_instrument(
+        "p20_multi_gen2", "left", tip_racks=[tiprack]
+    )
+
     for i in range(40):
+        right_pipette.pick_up_tip(tiprack.wells_by_name()["A3"])
+        left_pipette.pick_up_tip(tiprack2.wells_by_name()["A1"])
         for i in range(12):
             right_pipette.aspirate(200, tray[f"A{i%12+1}"])
-            right_pipette.dispense(200, tray2[f"A{i%12+1}"])
+            left_pipette.aspirate(20, tray2[f"A{i%12+1}"])
+            right_pipette.dispense(220, tray2[f"A{i%12+1}"])
+            left_pipette.dispense(25, tray[f"A{i%12+1}"])
         for i in range(12):
             right_pipette.aspirate(200, tray2[f"A{i%12+1}"])
-            right_pipette.dispense(200, tray[f"A{i%12+1}"])
-    right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
+            left_pipette.aspirate(20, tray[f"A{i%12+1}"])
+            right_pipette.dispense(220, tray[f"A{i%12+1}"])
+            left_pipette.dispense(25, tray2[f"A{i%12+1}"])
+        right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
+        left_pipette.drop_tip(tiprack2.wells_by_name()["A1"])
