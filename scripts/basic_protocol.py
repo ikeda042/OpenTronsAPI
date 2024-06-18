@@ -48,6 +48,8 @@ class OpenTronsProtocol:
         right_pipette = self.protocol.load_instrument(
             "p300_multi_gen2", "right", tip_racks=[tiprack]
         )
+        plate_1 = self.load_plate(self.protocol, "corning_96_wellplate_360ul_flat", "6")
+
         for i in range(3):
             plate_1 = self.load_plate(
                 self.protocol, "corning_96_wellplate_360ul_flat", "6"
