@@ -42,5 +42,7 @@
 
 ![](docs_images/tutorial1-1.jpeg)
 
-ここで、ロボットアームに取り付けられたPipetteTypeを下記画面から確かめる。
+ここで、ロボットアームに取り付けられたPipetteTypeを下記画面から確かめる。今回は、`300µL Tip Rack`に対応するタイプは`P300 8-channel GEN2`であるため、`Right Mount`を使用して操作を行う。
+
+![](docs_images/tutorial1-2.png)
 
