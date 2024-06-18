@@ -15,7 +15,7 @@ PipetteType = Annotated[str, Literal["p20_multi_gen2", "p300_multi_gen2"]]
 
 
 metadata = {
-    "protocolName": "Basic Protocol",
+    "protocolName": "OT-2 Basic Protocol",
     "author": "ikeda042",
     "description": "Basic Protocol for testing",
 }
