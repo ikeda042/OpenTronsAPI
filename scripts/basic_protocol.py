@@ -3,7 +3,7 @@ from typing import Literal
 import requests
 from datetime import datetime, timedelta, timezone
 
-JST = timezone(timedelta(hours=+9))
+JST: timezone = timezone(timedelta(hours=+9))
 
 metadata = {
     "protocolName": "OT-2 Basic Protocol",
