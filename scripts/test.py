@@ -1,5 +1,11 @@
 from opentrons import protocol_api
 from typing import Literal
+import requests
+
+# 接続元のPCのIPアドレスとFastAPIアプリケーションのポート番号を指定
+url = "http://169.254.176.52:8000/"
+
+# GETリクエストを送信
 
 
 metadata = {
@@ -41,8 +47,8 @@ def run(protocol: protocol_api.ProtocolContext):
         "p300_multi_gen2", "right", tip_racks=[tiprack]
     )
     plate_1 = load_plate(protocol, "corning_96_wellplate_360ul_flat", "6")
-
     right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
     right_pipette.aspirate(200, plate_1.wells_by_name()["A1"])
     right_pipette.dispense(200, plate_1.wells_by_name()["A2"])
+    response = requests.get(url)
     right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
