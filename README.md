@@ -20,6 +20,5 @@
 ## プロトコルの作成
 
 1. [OpenTrons公式サイト](https://docs.opentrons.com/v2/versioning.html)でAPIバージョンを確認する。
-2. OpenTronsLabwaresから
-
-https://labware.opentrons.com/
+   
+2. [OpenTronsLabwares](https://labware.opentrons.com/)から
