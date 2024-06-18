@@ -1,12 +1,18 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 import uvicorn
+
+
+class Message(BaseModel):
+    message: str
+
 
 app = FastAPI()
 
 
-@app.post("/{message}")
-async def send_message(message: str):
-    return {"message": message}
+@app.post("/send_message")
+async def send_message(msg: Message):
+    return {"message": msg.message}
 
 
 if __name__ == "__main__":
