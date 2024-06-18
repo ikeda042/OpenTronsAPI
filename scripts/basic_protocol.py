@@ -1,7 +1,9 @@
 from opentrons import protocol_api
 from typing import Literal
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
+
+JST = timezone(timedelta(hours=+9))
 
 metadata = {
     "protocolName": "OT-2 Basic Protocol",
@@ -93,7 +95,7 @@ class OpenTronsProtocol:
 
     @staticmethod
     def get_current_time() -> str:
-        return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        return datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
