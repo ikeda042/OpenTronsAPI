@@ -128,7 +128,7 @@ class OpenTronsProtocol:
                 f"*{self.messenger.get_current_time()}* 区画6の培地プールから8つのピペット全てに150uLの培地を吸引しました。"
             )
 
-            left_pipette.aspirate(50, pool2.wells_by_name()["A1"])
+            left_pipette.aspirate(20, pool2.wells_by_name()["A1"])
             self.messenger.send_message(
                 "*{self.messenger.get_current_time()}* 区画6の培地プールから2つのピペット全てに50uLの培地を吸引しました。"
             )
@@ -138,12 +138,12 @@ class OpenTronsProtocol:
                 f"*{self.messenger.get_current_time()}* 区画2のマイクロプレートリーダーの{n}列目の全ウェルに150uLの溶液を移動しました。"
             )
 
-            left_pipette.dispense(30, plate_2.wells_by_name()[f"A{n}"])
+            left_pipette.dispense(150, plate_2.wells_by_name()[f"A{n}"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに50uLの溶液を移動しました。"
             )
 
-            left_pipette.dispense(20, plate_2.wells_by_name()[f"A{n}"])
+            left_pipette.dispense(10, plate_2.wells_by_name()[f"A{n}"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに30uLの溶液を移動しました。"
             )
