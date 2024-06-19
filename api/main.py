@@ -14,6 +14,7 @@ app = FastAPI()
 @app.post("/send_message")
 async def send_message(msg: Message):
     # await send_message_func(msg.message)
+    print(msg.message)
     return {"message": msg.message}
 
 
