@@ -122,6 +122,5 @@ class OpenTronsProtocol:
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
-    for i in range(5):
-        ot_protocol = OpenTronsProtocol(protocol)
-        ot_protocol.exec()
+    ot_protocol = OpenTronsProtocol(protocol)
+    ot_protocol.exec()
