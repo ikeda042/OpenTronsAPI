@@ -117,15 +117,16 @@ class OpenTronsProtocol:
         plate: protocol_api.labware.Labware,
         plate_2: protocol_api.labware.Labware,
     ) -> None:
-        right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
-        left_pipette.pick_up_tip(tiprack_2.wells_by_name()["A1"])
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()}* 区画7のラックの1列目からチップを取りました。"
-        )
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()}* 区画8のラックの1列目からチップを取りました。"
-        )
+
         for n in range(1, 13):
+            right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
+            left_pipette.pick_up_tip(tiprack_2.wells_by_name()["A1"])
+            self.messenger.send_message(
+                f"*{self.messenger.get_current_time()}* 区画7のラックの1列目からチップを取りました。"
+            )
+            self.messenger.send_message(
+                f"*{self.messenger.get_current_time()}* 区画8のラックの1列目からチップを取りました。"
+            )
             right_pipette.aspirate(150, pool.wells_by_name()["A1"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画6の培地プールから8つのピペット全てに150uLの培地を吸引しました。"
@@ -133,7 +134,7 @@ class OpenTronsProtocol:
 
             left_pipette.aspirate(20, pool2.wells_by_name()["A1"])
             self.messenger.send_message(
-                "*{self.messenger.get_current_time()}* 区画6の培地プールから2つのピペット全てに50uLの培地を吸引しました。"
+                "*{self.messenger.get_current_time()}* 区画4の培地プールから8つのピペット全てに20uLの培地を吸引しました。"
             )
 
             right_pipette.dispense(100, plate.wells_by_name()[f"A{n}"])
@@ -141,19 +142,19 @@ class OpenTronsProtocol:
                 f"*{self.messenger.get_current_time()}* 区画2のマイクロプレートリーダーの{n}列目の全ウェルに150uLの溶液を移動しました。"
             )
 
-            left_pipette.dispense(15, plate_2.wells_by_name()[f"A{n}"])
+            right_pipette.dispense(50, plate_2.wells_by_name()[f"A{n}"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに50uLの溶液を移動しました。"
+            )
+
+            left_pipette.dispense(15, plate_2.wells_by_name()[f"A{n}"])
+            self.messenger.send_message(
+                f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに15uLの溶液を移動しました。"
             )
 
             left_pipette.dispense(5, plate_2.wells_by_name()[f"A{n}"])
             self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに30uLの溶液を移動しました。"
-            )
-
-            right_pipette.dispense(50, plate_2.wells_by_name()[f"A{n}"])
-            self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに50uLの溶液を移動しました。"
+                f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに5uLの溶液を移動しました。"
             )
 
             right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
