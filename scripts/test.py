@@ -138,12 +138,12 @@ class OpenTronsProtocol:
                 f"*{self.messenger.get_current_time()}* 区画2のマイクロプレートリーダーの{n}列目の全ウェルに150uLの溶液を移動しました。"
             )
 
-            left_pipette.dispense(150, plate_2.wells_by_name()[f"A{n}"])
+            left_pipette.dispense(15, plate_2.wells_by_name()[f"A{n}"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに50uLの溶液を移動しました。"
             )
 
-            left_pipette.dispense(10, plate_2.wells_by_name()[f"A{n}"])
+            left_pipette.dispense(5, plate_2.wells_by_name()[f"A{n}"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに30uLの溶液を移動しました。"
             )
