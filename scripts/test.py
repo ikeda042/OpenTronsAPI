@@ -71,10 +71,15 @@ class OpenTronsProtocol:
 
     def exec(self) -> None:
         tiprack = self.labware_loader.get_tiprack("opentrons_96_tiprack_300ul", "7")
+        tiprack_2 = self.labware_loader.get_tiprack("opentrons_96_tiprack_20ul", "8")
         right_pipette = self.labware_loader.load_pipette(
             "p300_multi_gen2", tiprack, "right"
         )
+        left_pipette = self.labware_loader.load_pipette(
+            "p20_multi_gen2", tiprack_2, "left"
+        )
         pool = self.labware_loader.load_plate("corning_96_wellplate_360ul_flat", "6")
+        pool2 = self.labware_loader.load_plate("corning_96_wellplate_360ul_flat", "4")
         microplate = self.labware_loader.load_plate(
             "corning_96_wellplate_360ul_flat", "2"
         )
@@ -100,33 +105,41 @@ class OpenTronsProtocol:
 
     def perform_pipetting_cycle(
         self,
-        pipette: protocol_api.InstrumentContext,
+        right_pipette: protocol_api.InstrumentContext,
+        left_pipette: protocol_api.InstrumentContext,
         tiprack: protocol_api.labware.Labware,
+        tiprack_2: protocol_api.labware.Labware,
         pool: protocol_api.labware.Labware,
         plate: protocol_api.labware.Labware,
         plate_2: protocol_api.labware.Labware,
     ) -> None:
-        pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
+        right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
+        left_pipette.pick_up_tip(tiprack_2.wells_by_name()["A1"])
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()}* 区画7のラックの1列目からチップを取りました。"
         )
         for n in range(1, 13):
-            pipette.aspirate(150, pool.wells_by_name()["A1"])
+            right_pipette.aspirate(150, pool.wells_by_name()["A1"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画6の培地プールから8つのピペット全てに150uLの培地を吸引しました。"
             )
 
-            pipette.dispense(100, plate.wells_by_name()[f"A{n}"])
+            left_pipette.aspirate(50, pool.wells_by_name()["A1"])
+            self.messenger.send_message(
+                "*{self.messenger.get_current_time()}* 区画6の培地プールから2つのピペット全てに50uLの培地を吸引しました。"
+            )
+
+            right_pipette.dispense(100, plate.wells_by_name()[f"A{n}"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画2のマイクロプレートリーダーの{n}列目の全ウェルに150uLの溶液を移動しました。"
             )
 
-            pipette.dispense(50, plate_2.wells_by_name()[f"A{n}"])
+            right_pipette.dispense(50, plate_2.wells_by_name()[f"A{n}"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに50uLの溶液を移動しました。"
             )
 
-        pipette.drop_tip(tiprack.wells_by_name()["A1"])
+        right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()}* チップを区画7のラックの1列目に戻しました。"
         )
