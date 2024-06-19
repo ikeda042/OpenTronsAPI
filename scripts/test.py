@@ -82,13 +82,14 @@ class OpenTronsProtocol:
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()}* 分注操作を開始します。"
         )
-        self.perform_pipetting_cycle(
-            right_pipette,
-            tiprack,
-            pool,
-            microplate,
-        )
 
+        for i in range(5):
+            self.perform_pipetting_cycle(
+                right_pipette,
+                tiprack,
+                pool,
+                microplate,
+            )
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()}* 全ての処理が完了しました。"
         )
