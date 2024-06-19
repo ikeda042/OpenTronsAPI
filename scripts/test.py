@@ -96,6 +96,7 @@ class OpenTronsProtocol:
                 right_pipette,
                 left_pipette,
                 tiprack,
+                tiprack_2,
                 pool,
                 pool2,
                 microplate,
