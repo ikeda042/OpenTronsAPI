@@ -122,6 +122,9 @@ class OpenTronsProtocol:
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()}* 区画7のラックの1列目からチップを取りました。"
         )
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()}* 区画8のラックの1列目からチップを取りました。"
+        )
         for n in range(1, 13):
             right_pipette.aspirate(150, pool.wells_by_name()["A1"])
             self.messenger.send_message(
