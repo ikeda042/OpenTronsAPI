@@ -78,6 +78,9 @@ class OpenTronsProtocol:
         microplate = self.labware_loader.load_plate(
             "corning_96_wellplate_360ul_flat", "2"
         )
+        microplate_2 = self.labware_loader.load_plate(
+            "corning_96_wellplate_360ul_flat", "1"
+        )
 
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()}* 分注操作を開始します。"
@@ -89,6 +92,7 @@ class OpenTronsProtocol:
                 tiprack,
                 pool,
                 microplate,
+                microplate_2,
             )
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()}* 全ての処理が完了しました。"
@@ -100,6 +104,7 @@ class OpenTronsProtocol:
         tiprack: protocol_api.labware.Labware,
         pool: protocol_api.labware.Labware,
         plate: protocol_api.labware.Labware,
+        plate_2: protocol_api.labware.Labware,
     ) -> None:
         pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
         self.messenger.send_message(
