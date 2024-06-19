@@ -94,8 +94,10 @@ class OpenTronsProtocol:
         for i in range(5):
             self.perform_pipetting_cycle(
                 right_pipette,
+                left_pipette,
                 tiprack,
                 pool,
+                pool2,
                 microplate,
                 microplate_2,
             )
