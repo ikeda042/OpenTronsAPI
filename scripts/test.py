@@ -118,15 +118,16 @@ class OpenTronsProtocol:
         plate_2: protocol_api.labware.Labware,
     ) -> None:
 
+        right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
+        left_pipette.pick_up_tip(tiprack_2.wells_by_name()["A1"])
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()}* 区画7のラックの1列目からチップを取りました。"
+        )
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()}* 区画8のラックの1列目からチップを取りました。"
+        )
         for n in range(1, 13):
-            right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
-            left_pipette.pick_up_tip(tiprack_2.wells_by_name()["A1"])
-            self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画7のラックの1列目からチップを取りました。"
-            )
-            self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画8のラックの1列目からチップを取りました。"
-            )
+
             right_pipette.aspirate(150, pool.wells_by_name()["A1"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画6の培地プールから8つのピペット全てに150uLの培地を吸引しました。"
@@ -157,15 +158,15 @@ class OpenTronsProtocol:
                 f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに5uLの溶液を移動しました。"
             )
 
-            right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
-            self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* チップを区画7のラックの1列目に戻しました。"
-            )
+        right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()}* チップを区画7のラックの1列目に戻しました。"
+        )
 
-            left_pipette.drop_tip(tiprack_2.wells_by_name()["A1"])
-            self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* チップを区画8のラックの1列目に戻しました。"
-            )
+        left_pipette.drop_tip(tiprack_2.wells_by_name()["A1"])
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()}* チップを区画8のラックの1列目に戻しました。"
+        )
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
