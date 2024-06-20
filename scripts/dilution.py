@@ -115,7 +115,6 @@ class OpenTronsProtocol:
         pool: protocol_api.labware.Labware,
         pool2: protocol_api.labware.Labware,
         plate: protocol_api.labware.Labware,
-        plate_2: protocol_api.labware.Labware,
     ) -> None:
 
         right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
