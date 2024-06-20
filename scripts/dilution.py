@@ -105,7 +105,6 @@ class OpenTronsProtocol:
             pool,
             pool2,
             microplate,
-            microplate_2,
         )
 
         self.messenger.send_message(
