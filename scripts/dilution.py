@@ -72,7 +72,7 @@ class OpenTronsProtocol:
 
     def sleep_for(self, seconds: int) -> None:
         self.messenger.send_message(
-            f"*{self.messenger.get_current_time()} ステータス→* {seconds}秒後に希釈シーケンスを開始します。"
+            f"*{self.messenger.get_current_time()} ステータス-sleep→* {seconds}秒間シーケンスを中断します。"
         )
         time.sleep(seconds)
 
@@ -133,15 +133,20 @@ class OpenTronsProtocol:
             f"*{self.messenger.get_current_time()} ステータス→* 区画7のラックの6列目から300µLチップを取りました。"
         )
 
+        self.sleep_for(5)
+
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* DW20ulを全てのウェルにロードします。"
+        )
         # 90ulを全ウェルにロードする
         for n in range(1, 13):
             right_pipette.aspirate(20, pool.wells_by_name()["A1"])
             right_pipette.dispense(20, plate.wells_by_name()[f"A{n}"])
             right_pipette.blow_out()
-
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} ステータス→* DW20ulを全てのウェルにロードしました。"
         )
+
         right_pipette.drop_tip(tiprack.wells_by_name()["A6"])
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} ステータス→* 区画7のラックの6列目に300µLチップを戻しました。"
