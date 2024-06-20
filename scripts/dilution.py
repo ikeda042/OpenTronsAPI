@@ -119,53 +119,18 @@ class OpenTronsProtocol:
 
         right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
         left_pipette.pick_up_tip(tiprack_2.wells_by_name()["A1"])
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()}* 区画7のラックの1列目からチップを取りました。"
-        )
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()}* 区画8のラックの1列目からチップを取りました。"
-        )
+
         for n in range(1, 13):
-
-            right_pipette.aspirate(150, pool.wells_by_name()["A1"])
-            self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画6の培地プールから8つのピペット全てに150uLの培地を吸引しました。"
-            )
-
-            left_pipette.aspirate(20, pool2.wells_by_name()["A1"])
-            self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画4の培地プールから8つのピペット全てに20uLの培地を吸引しました。"
-            )
-
-            right_pipette.dispense(100, plate.wells_by_name()[f"A{n}"])
-            self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画2のマイクロプレートリーダーの{n}列目の全ウェルに150uLの溶液を移動しました。"
-            )
-
-            right_pipette.dispense(50, plate_2.wells_by_name()[f"A{n}"])
-            self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに50uLの溶液を移動しました。"
-            )
-
-            left_pipette.dispense(15, plate_2.wells_by_name()[f"A{n}"])
+            right_pipette.aspirate(90, pool.wells_by_name()["A1"])
+            left_pipette.aspirate(10, pool2.wells_by_name()["A1"])
+            right_pipette.dispense(90, plate.wells_by_name()[f"A{n}"])
+            left_pipette.dispense(10, plate.wells_by_name()[f"A{n}"])
             self.messenger.send_message(
                 f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに15uLの溶液を移動しました。"
             )
 
-            left_pipette.dispense(5, plate_2.wells_by_name()[f"A{n}"])
-            self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに5uLの溶液を移動しました。"
-            )
-
         right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()}* チップを区画7のラックの1列目に戻しました。"
-        )
-
         left_pipette.drop_tip(tiprack_2.wells_by_name()["A1"])
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()}* チップを区画8のラックの1列目に戻しました。"
-        )
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
