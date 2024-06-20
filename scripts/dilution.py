@@ -161,14 +161,14 @@ class OpenTronsProtocol:
             f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスを開始します。"
         )
 
-        right_pipette.aspirate(75, pool2.wells_by_name()["A1"])
-        right_pipette.dispense(75, plate.wells_by_name()["A1"])
+        right_pipette.aspirate(150, pool2.wells_by_name()["A1"])
+        right_pipette.dispense(150, plate.wells_by_name()["A1"])
         right_pipette.mix(repetitions=3, volume=50)
         right_pipette.blow_out()
 
         for i in range(1, 12):
-            right_pipette.aspirate(75, plate.wells_by_name()[f"A{i}"])
-            right_pipette.dispense(75, plate.wells_by_name()[f"A{i+1}"])
+            right_pipette.aspirate(150, plate.wells_by_name()[f"A{i}"])
+            right_pipette.dispense(150, plate.wells_by_name()[f"A{i+1}"])
             right_pipette.mix(repetitions=3, volume=50)
             right_pipette.blow_out()
 
