@@ -109,7 +109,7 @@ class OpenTronsProtocol:
         )
 
         self.messenger.send_message(
-            f"*{self.messenger.get_current_time()}* 全ての処理が完了しました。"
+            f"*{self.messenger.get_current_time()} シーケンス終了* 全ての処理が完了しました。"
         )
 
     def perform_pipetting_cycle(
