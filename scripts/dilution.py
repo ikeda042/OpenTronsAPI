@@ -139,7 +139,7 @@ class OpenTronsProtocol:
             f"*{self.messenger.get_current_time()} ステータス→* 区画7のラックの6列目に300µLチップを戻しました。"
         )
 
-        left_pipette.pick_up_tip(tiprack_2.wells_by_name()["A4"])
+        left_pipette.pick_up_tip(tiprack_2.wells_by_name()["A3"])
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} ステータス→* 区画8のラックの4列目から20µLチップを取りました。"
         )
