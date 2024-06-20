@@ -103,6 +103,7 @@ class OpenTronsProtocol:
             tiprack,
             tiprack_2,
             pool,
+            pool2,
             microplate,
         )
 
@@ -117,6 +118,7 @@ class OpenTronsProtocol:
         tiprack: protocol_api.labware.Labware,
         tiprack_2: protocol_api.labware.Labware,
         pool: protocol_api.labware.Labware,
+        pool2: protocol_api.labware.Labware,
         plate: protocol_api.labware.Labware,
     ) -> None:
 
@@ -141,6 +143,11 @@ class OpenTronsProtocol:
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} ステータス→* 区画8のラックの4列目から20µLチップを取りました。"
         )
+
+        left_pipette.aspirate(10, pool2.wells_by_name()["A1"])
+        left_pipette.dispense(10, plate.wells_by_name()["A1"])
+        left_pipette.mix(repetitions=3, volume=10)
+        left_pipette.blow_out()
 
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} ステータス→* １分後に希釈シーケンスを開始します。"
