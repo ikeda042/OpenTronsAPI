@@ -2,6 +2,7 @@ from opentrons import protocol_api
 from typing import Literal
 import requests
 from datetime import datetime, timedelta, timezone
+import time
 
 JST: timezone = timezone(timedelta(hours=+9))
 
@@ -140,11 +141,20 @@ class OpenTronsProtocol:
         )
 
         self.messenger.send_message(
-            f"*{self.messenger.get_current_time()} ステータス→* 希釈を開始します。"
+            f"*{self.messenger.get_current_time()} ステータス→* １分後に希釈シーケンスを開始します。"
         )
+        time.sleep(60)
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスを開始します。"
+        )
+s
         for n in range(1, 12):
             left_pipette.aspirate(10, plate.wells_by_name()[f"A{n}"])
             left_pipette.dispense(10, plate.wells_by_name()[f"A{n+1}"])
+
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* 希釈が完了しました。"
+        )
         left_pipette.drop_tip(tiprack_2.wells_by_name()["A1"])
 
 
