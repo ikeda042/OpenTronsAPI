@@ -172,6 +172,10 @@ class OpenTronsProtocol:
             right_pipette.mix(repetitions=3, volume=50)
             right_pipette.blow_out()
 
+        right_pipette.drop_tip(tiprack.wells_by_name()["A7"])
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* 区画7のラックの7列目に300µLチップを戻しました。"
+        )
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスが完了しました。"
         )
