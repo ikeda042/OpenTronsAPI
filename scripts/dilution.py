@@ -92,23 +92,22 @@ class OpenTronsProtocol:
             f"*{self.messenger.get_current_time()}* シーケンスを開始します。"
         )
 
-        # send metadata
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} メタデータ→* protocol:{metadata['protocolName']},"
             f" author:{metadata['author']}, description:{metadata['description']}, apiLevel:{metadata['apiLevel']}"
         )
 
-        for i in range(5):
-            self.perform_pipetting_cycle(
-                right_pipette,
-                left_pipette,
-                tiprack,
-                tiprack_2,
-                pool,
-                pool2,
-                microplate,
-                microplate_2,
-            )
+        self.perform_pipetting_cycle(
+            right_pipette,
+            left_pipette,
+            tiprack,
+            tiprack_2,
+            pool,
+            pool2,
+            microplate,
+            microplate_2,
+        )
+
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()}* 全ての処理が完了しました。"
         )
