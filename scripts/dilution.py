@@ -140,8 +140,8 @@ class OpenTronsProtocol:
         )
         # 90ulを全ウェルにロードする
         for n in range(1, 13):
-            right_pipette.aspirate(20, pool.wells_by_name()["A1"])
-            right_pipette.dispense(20, plate.wells_by_name()[f"A{n}"])
+            right_pipette.aspirate(75, pool.wells_by_name()["A1"])
+            right_pipette.dispense(75, plate.wells_by_name()[f"A{n}"])
             right_pipette.blow_out()
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} ステータス→* DW20ulを全てのウェルにロードしました。"
@@ -157,6 +157,25 @@ class OpenTronsProtocol:
             f"*{self.messenger.get_current_time()} ステータス→* 区画7のラックの7列目から300µLチップを取りました。"
         )
 
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスを開始します。"
+        )
+
+        right_pipette.aspirate(75, pool2.wells_by_name()["A1"])
+        right_pipette.dispense(75, plate.wells_by_name()["A1"])
+        right_pipette.mix(repetitions=3, volume=50)
+        right_pipette.blow_out()
+
+        for i in range(1, 12):
+            right_pipette.aspirate(75, plate.wells_by_name()[f"A{i}"])
+            right_pipette.dispense(75, plate.wells_by_name()[f"A{i+1}"])
+            right_pipette.mix(repetitions=3, volume=50)
+            right_pipette.blow_out()
+
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスが完了しました。"
+        )
+
         # left_pipette.pick_up_tip(tiprack_2.wells_by_name()["A3"])
         # self.messenger.send_message(
         #     f"*{self.messenger.get_current_time()} ステータス→* 区画8のラックの4列目から20µLチップを取りました。"
@@ -167,24 +186,24 @@ class OpenTronsProtocol:
         # left_pipette.mix(repetitions=3, volume=10)
         # left_pipette.blow_out()
 
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスを開始します。"
-        )
+        # self.messenger.send_message(
+        #     f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスを開始します。"
+        # )
 
-        for n in range(1, 12):
-            left_pipette.aspirate(20, plate.wells_by_name()[f"A{n}"])
-            left_pipette.dispense(20, plate.wells_by_name()[f"A{n+1}"])
-            left_pipette.mix(repetitions=3, volume=10)
-            left_pipette.blow_out()
+        # for n in range(1, 12):
+        #     left_pipette.aspirate(20, plate.wells_by_name()[f"A{n}"])
+        #     left_pipette.dispense(20, plate.wells_by_name()[f"A{n+1}"])
+        #     left_pipette.mix(repetitions=3, volume=10)
+        #     left_pipette.blow_out()
 
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスが完了しました。"
-        )
-        left_pipette.drop_tip(tiprack_2.wells_by_name()["A3"])
+        # self.messenger.send_message(
+        #     f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスが完了しました。"
+        # )
+        # left_pipette.drop_tip(tiprack_2.wells_by_name()["A3"])
 
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()} ステータス→* 区画8のラックの3列目に20µLチップを戻しました。"
-        )
+        # self.messenger.send_message(
+        #     f"*{self.messenger.get_current_time()} ステータス→* 区画8のラックの3列目に20µLチップを戻しました。"
+        # )
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
