@@ -103,7 +103,6 @@ class OpenTronsProtocol:
             tiprack,
             tiprack_2,
             pool,
-            pool2,
             microplate,
         )
 
@@ -118,7 +117,6 @@ class OpenTronsProtocol:
         tiprack: protocol_api.labware.Labware,
         tiprack_2: protocol_api.labware.Labware,
         pool: protocol_api.labware.Labware,
-        pool2: protocol_api.labware.Labware,
         plate: protocol_api.labware.Labware,
     ) -> None:
 
@@ -154,7 +152,7 @@ class OpenTronsProtocol:
 
         for n in range(1, 12):
             left_pipette.aspirate(10, plate.wells_by_name()[f"A{n}"])
-            left_pipette.dispense(10, plate.wells_by_name()[f"A{n+1}"], push_out=5)
+            left_pipette.dispense(10, plate.wells_by_name()[f"A{n+1}"])
             left_pipette.mix(repetitions=3, volume=10)
             left_pipette.blow_out()
 
