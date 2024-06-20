@@ -136,15 +136,15 @@ class OpenTronsProtocol:
         self.sleep_for(5)
 
         self.messenger.send_message(
-            f"*{self.messenger.get_current_time()} ステータス→* DW20ulを全てのウェルにロードします。"
+            f"*{self.messenger.get_current_time()} ステータス→* DW150ulを全てのウェルにロードします。"
         )
         # 90ulを全ウェルにロードする
         for n in range(1, 13):
-            right_pipette.aspirate(75, pool.wells_by_name()["A1"])
-            right_pipette.dispense(75, plate.wells_by_name()[f"A{n}"])
+            right_pipette.aspirate(150, pool.wells_by_name()["A1"])
+            right_pipette.dispense(150, plate.wells_by_name()[f"A{n}"])
             right_pipette.blow_out()
         self.messenger.send_message(
-            f"*{self.messenger.get_current_time()} ステータス→* DW20ulを全てのウェルにロードしました。"
+            f"*{self.messenger.get_current_time()} ステータス→* DW150ulを全てのウェルにロードしました。"
         )
 
         right_pipette.drop_tip(tiprack.wells_by_name()["A6"])
