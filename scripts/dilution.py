@@ -89,7 +89,13 @@ class OpenTronsProtocol:
         )
 
         self.messenger.send_message(
-            f"*{self.messenger.get_current_time()}* 分注操作を開始します。"
+            f"*{self.messenger.get_current_time()}* シーケンスを開始します。"
+        )
+
+        # send metadata
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} メタデータ→* protocol:{metadata['protocolName']},"
+            f" author:{metadata['author']}, description:{metadata['description']}, apiLevel:{metadata['apiLevel']}"
         )
 
         for i in range(5):
@@ -155,7 +161,11 @@ class OpenTronsProtocol:
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスが完了しました。"
         )
-        left_pipette.drop_tip(tiprack_2.wells_by_name()["A1"])
+        left_pipette.drop_tip(tiprack_2.wells_by_name()["A3"])
+
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* 区画8のラックの3列目に20µLチップを戻しました。"
+        )
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
