@@ -117,19 +117,36 @@ class OpenTronsProtocol:
         plate: protocol_api.labware.Labware,
     ) -> None:
 
-        right_pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
-        left_pipette.pick_up_tip(tiprack_2.wells_by_name()["A1"])
+        right_pipette.pick_up_tip(tiprack.wells_by_name()["A6"])
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* 区画7のラックの6列目から300µLチップを取りました。"
+        )
 
+        # 90ulを全ウェルにロードする
         for n in range(1, 13):
             right_pipette.aspirate(90, pool.wells_by_name()["A1"])
-            left_pipette.aspirate(10, pool2.wells_by_name()["A1"])
+            right_pipette.dispense(90, plate.wells_by_name()[f"A{n}"], push_out=10)
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* DW90ulを全てのウェルにロードしました。"
+        )
+        right_pipette.drop_tip(tiprack.wells_by_name()["A6"])
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* 区画7のラックの6列目に300µLチップを戻しました。"
+        )
+
+        left_pipette.pick_up_tip(tiprack_2.wells_by_name()["A3"])
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* 区画8のラックの3列目から20µLチップを取りました。"
+        )
+
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* 希釈を開始します。"
+        )
+        for n in range(1, 13):
+            left_pipette.aspirate(10, plate.wells_by_name()["A1"])
             right_pipette.dispense(90, plate.wells_by_name()[f"A{n}"])
             left_pipette.dispense(10, plate.wells_by_name()[f"A{n}"])
-            self.messenger.send_message(
-                f"*{self.messenger.get_current_time()}* 区画1のマイクロプレートリーダーの{n}列目の全ウェルに15uLの溶液を移動しました。"
-            )
 
-        right_pipette.drop_tip(tiprack.wells_by_name()["A1"])
         left_pipette.drop_tip(tiprack_2.wells_by_name()["A1"])
 
 
