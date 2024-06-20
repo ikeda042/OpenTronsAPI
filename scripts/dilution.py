@@ -155,7 +155,9 @@ class OpenTronsProtocol:
 
         for n in range(1, 12):
             left_pipette.aspirate(10, plate.wells_by_name()[f"A{n}"])
-            left_pipette.dispense(10, plate.wells_by_name()[f"A{n+1}"])
+            left_pipette.dispense(10, plate.wells_by_name()[f"A{n+1}"], push_out=5)
+            left_pipette.mix(repetitions=3, volume=10)
+            left_pipette.blow_out()
 
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスが完了しました。"
