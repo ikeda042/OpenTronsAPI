@@ -7,9 +7,9 @@ import time
 JST: timezone = timezone(timedelta(hours=+9))
 
 metadata = {
-    "protocolName": "Microplate 96-well Protocol",
+    "protocolName": "Microplate 96-well Multiple Dilution Protocol",
     "author": "ikeda042",
-    "description": "Basic Protocol for testing",
+    "description": "希釈シーケンスを行うプロトコル",
     "apiLevel": "2.18",
 }
 
