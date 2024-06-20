@@ -70,6 +70,12 @@ class OpenTronsProtocol:
         self.labware_loader = LabwareLoader(protocol)
         self.messenger = Messenger(protocol)
 
+    def sleep_for(self, seconds: int) -> None:
+        self.messenger.send_message(
+            f"*{self.messenger.get_current_time()} ステータス→* {seconds}秒後に希釈シーケンスを開始します。"
+        )
+        time.sleep(seconds)
+
     def exec(self) -> None:
         tiprack = self.labware_loader.get_tiprack("opentrons_96_tiprack_300ul", "7")
         tiprack_2 = self.labware_loader.get_tiprack("opentrons_96_tiprack_20ul", "8")
@@ -129,10 +135,12 @@ class OpenTronsProtocol:
 
         # 90ulを全ウェルにロードする
         for n in range(1, 13):
-            right_pipette.aspirate(90, pool.wells_by_name()["A1"])
-            right_pipette.dispense(90, plate.wells_by_name()[f"A{n}"], push_out=10)
+            right_pipette.aspirate(20, pool.wells_by_name()["A1"])
+            right_pipette.dispense(20, plate.wells_by_name()[f"A{n}"])
+            right_pipette.blow_out()
+
         self.messenger.send_message(
-            f"*{self.messenger.get_current_time()} ステータス→* DW90ulを全てのウェルにロードしました。"
+            f"*{self.messenger.get_current_time()} ステータス→* DW20ulを全てのウェルにロードしました。"
         )
         right_pipette.drop_tip(tiprack.wells_by_name()["A6"])
         self.messenger.send_message(
@@ -149,10 +157,6 @@ class OpenTronsProtocol:
         left_pipette.mix(repetitions=3, volume=10)
         left_pipette.blow_out()
 
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()} ステータス→* １分後に希釈シーケンスを開始します。"
-        )
-        time.sleep(60)
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} ステータス→* 希釈シーケンスを開始します。"
         )
