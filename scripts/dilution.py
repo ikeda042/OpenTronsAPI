@@ -134,7 +134,7 @@ class OpenTronsProtocol:
 
             left_pipette.aspirate(20, pool2.wells_by_name()["A1"])
             self.messenger.send_message(
-                "*{self.messenger.get_current_time()}* 区画4の培地プールから8つのピペット全てに20uLの培地を吸引しました。"
+                f"*{self.messenger.get_current_time()}* 区画4の培地プールから8つのピペット全てに20uLの培地を吸引しました。"
             )
 
             right_pipette.dispense(100, plate.wells_by_name()[f"A{n}"])
