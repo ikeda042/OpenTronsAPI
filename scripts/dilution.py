@@ -142,11 +142,9 @@ class OpenTronsProtocol:
         self.messenger.send_message(
             f"*{self.messenger.get_current_time()} ステータス→* 希釈を開始します。"
         )
-        for n in range(1, 13):
-            left_pipette.aspirate(10, plate.wells_by_name()["A1"])
-            right_pipette.dispense(90, plate.wells_by_name()[f"A{n}"])
-            left_pipette.dispense(10, plate.wells_by_name()[f"A{n}"])
-
+        for n in range(1, 12):
+            left_pipette.aspirate(10, plate.wells_by_name()[f"A{n}"])
+            left_pipette.dispense(10, plate.wells_by_name()[f"A{n+1}"])
         left_pipette.drop_tip(tiprack_2.wells_by_name()["A1"])
 
 
