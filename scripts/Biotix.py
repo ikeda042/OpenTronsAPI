@@ -8,7 +8,7 @@ JST: timezone = timezone(timedelta(hours=+9))
 
 metadata = {
     "protocolName": "Microplate 96-well Multiple Dilution Protocol",
-    "author": "YOSHITERU",
+    "author": "RT",
     "description": "Biotixテスト10ul",
     "apiLevel": "2.18",
 }
