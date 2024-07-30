@@ -69,7 +69,7 @@ class BaseDistributor:
             "corning_96_wellplate_360ul_flat", "3"
         )
 
-    def distribute(self, aspirate_height: float | None = 2.0) -> None:
+    def distribute(self, aspirate_height: float | None = 10.0) -> None:
         self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A1"])
         for n in range(1, 13):
             self.right_pipette.aspirate(
@@ -81,4 +81,4 @@ class BaseDistributor:
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
     ot_protocol = BaseDistributor(protocol)
-    ot_protocol.distribute(aspirate_height=2.0)
+    ot_protocol.distribute(aspirate_height=10.0)
