@@ -89,7 +89,7 @@ class BaseDistributor:
     def distribute(self, aspirate_height_in_mm: float | None = 10.0) -> None:
         self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A1"])
         for n, j in zip(self.dist_amounts):
-            for n in range(1, 13):
+            for n in range(1, 2):
                 self.right_pipette.aspirate(
                     j,
                     self.reservoir.wells_by_name()["A7"].bottom(aspirate_height_in_mm),
@@ -109,3 +109,8 @@ class BaseDistributor:
 def run(protocol: protocol_api.ProtocolContext) -> None:
     ot_protocol = BaseDistributor(protocol)
     ot_protocol.distribute(aspirate_height_in_mm=5.0)
+
+
+for i in range(1, 2):
+    print(f"A{i}")
+    print(f"A{i}".split("A")[1])
