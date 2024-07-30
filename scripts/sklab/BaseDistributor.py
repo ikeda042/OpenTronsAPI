@@ -61,3 +61,12 @@ class BaseDistributor:
         self.tiprack: protocol_api.labware.Labware = labware_loader.get_tiprack(
             "opentrons_96_tiprack_300ul", "1"
         )
+        self.right_pipette: protocol_api.InstrumentContext = (
+            labware_loader.load_pipette("p300_multi_gen2", self.tiprack, "right")
+        )
+        self.left_pipette: protocol_api.InstrumentContext = labware_loader.load_pipette(
+            "p300_multi_gen2", self.tiprack, "left"
+        )
+        self.reservoir: protocol_api.labware.Labware = labware_loader.load_plate(
+            "nest_12_reservoir_15ml", "2"
+        )
