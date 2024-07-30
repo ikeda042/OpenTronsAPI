@@ -63,7 +63,13 @@ dist_amounts: list[int] = [100, 100, 100, 100, 100, 100]
 
 
 class BaseDistributor:
-    def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
+
+    def __init__(
+        self,
+        protocol: protocol_api.ProtocolContext,
+        plates_to_use: list[PlateIndex] = ["4", "5", "7", "8", "10", "11"],
+        dist_amounts: list[int] = [100, 100, 100, 100, 100, 100],
+    ) -> None:
         labware_loader: LabwareLoader = LabwareLoader(protocol)
         self.tiprack: protocol_api.labware.Labware = labware_loader.get_tiprack(
             "opentrons_96_tiprack_300ul", "9"
@@ -77,6 +83,8 @@ class BaseDistributor:
         self.microplate: protocol_api.labware.Labware = labware_loader.load_plate(
             "corning_96_wellplate_360ul_flat", "3"
         )
+        self.plates_to_use: list[PlateIndex] = plates_to_use
+        self.dist_amounts: list[int] = dist_amounts
 
     def distribute(self, aspirate_height_in_mm: float | None = 10.0) -> None:
         self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A1"])
