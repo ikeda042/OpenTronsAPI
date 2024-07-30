@@ -28,6 +28,7 @@ metadata = {
 }
 ## Base settings
 plates_to_use: list[PlateIndex] = ["4", "5", "7", "8", "10", "11"]
+dist_amount: float = 100.0
 
 
 class LabwareLoader:
