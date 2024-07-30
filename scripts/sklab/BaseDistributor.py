@@ -113,8 +113,3 @@ class BaseDistributor:
 def run(protocol: protocol_api.ProtocolContext) -> None:
     ot_protocol = BaseDistributor(protocol)
     ot_protocol.distribute(aspirate_height_in_mm=5.0)
-
-
-for i in range(1, 2):
-    print(f"A{i}")
-    print(f"A{i}".split("A")[1])
