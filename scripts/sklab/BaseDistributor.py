@@ -73,3 +73,16 @@ class BaseDistributor:
         self.microplate: protocol_api.labware.Labware = labware_loader.load_plate(
             "corning_96_wellplate_360ul_flat", "2"
         )
+
+    def distribute(self) -> None:
+        self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A1"])
+        self.left_pipette.pick_up_tip()
+        for i in range(0, 12):
+            self.right_pipette.aspirate(100, self.reservoir.wells()[i])
+            self.right_pipette.dispense(50, self.microplate.wells()[i])
+            self.right_pipette.blow_out()
+            self.left_pipette.aspirate(100, self.reservoir.wells()[i + 12])
+            self.left_pipette.dispense(50, self.microplate.wells()[i + 12])
+            self.left_pipette.blow_out()
+        self.right_pipette.drop_tip()
+        self.left_pipette.drop_tip()
