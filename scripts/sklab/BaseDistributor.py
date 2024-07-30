@@ -26,9 +26,6 @@ metadata = {
     "description": "分注プロトコル(リザーバーから)",
     "apiLevel": "2.18",
 }
-## Base settings
-plates_to_use: list[PlateIndex] = ["4", "5", "7", "8", "10", "11"]
-dist_amounts: list[int] = [100, 100, 100, 100, 100, 100]
 
 
 class LabwareLoader:
@@ -58,6 +55,11 @@ class LabwareLoader:
         mount: Mount,
     ) -> protocol_api.InstrumentContext:
         return self.protocol.load_instrument(pipette_type, mount, tip_racks=[tiprack])
+
+
+## Base settings
+plates_to_use: list[PlateIndex] = ["4", "5", "7", "8", "10", "11"]
+dist_amounts: list[int] = [100, 100, 100, 100, 100, 100]
 
 
 class BaseDistributor:
