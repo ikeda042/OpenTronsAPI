@@ -63,7 +63,6 @@ dist_amounts: list[int] = [100, 100, 100, 100, 100, 100]
 
 
 class BaseDistributor:
-
     def __init__(
         self,
         protocol: protocol_api.ProtocolContext,
