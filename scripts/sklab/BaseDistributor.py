@@ -68,5 +68,5 @@ class BaseDistributor:
             "p300_multi_gen2", self.tiprack, "left"
         )
         self.reservoir: protocol_api.labware.Labware = labware_loader.load_plate(
-            "nest_12_reservoir_15ml", "2"
+            "corning_96_wellplate_360ul_flat", "1"
         )
