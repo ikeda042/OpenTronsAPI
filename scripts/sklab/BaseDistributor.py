@@ -8,6 +8,10 @@ Slot = Annotated[
     Literal["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
     "value should be between 1 and 12",
 ]
+PlateIndex = Annotated[
+    Literal["4", "5", "7", "8", "10", "11"],
+    "value should be in the list",
+]
 PlateType = Annotated[
     Literal["corning_96_wellplate_360ul_flat"], "value should be in the list"
 ]
@@ -22,6 +26,8 @@ metadata = {
     "description": "分注プロトコル(リザーバーから)",
     "apiLevel": "2.18",
 }
+## Base settings
+use_plates: list[Slot] = ["1", "3"]
 
 
 class LabwareLoader:
