@@ -85,6 +85,10 @@ class BaseDistributor:
         ]
         self.plates_to_use: list[PlateIndex] = plates_to_use
         self.dist_amounts: list[int] = dist_amounts
+        if len(plates_to_use) != len(dist_amounts):
+            raise ValueError(
+                "The length of plates_to_use and dist_amounts must be the same."
+            )
 
     def distribute(self, aspirate_height_in_mm: float | None = 10.0) -> None:
         self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A1"])
