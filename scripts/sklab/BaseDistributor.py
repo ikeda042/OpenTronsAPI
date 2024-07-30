@@ -16,7 +16,6 @@ PipetteType = Annotated[
 ]
 Mount = Annotated[Literal["left", "right"], "value should be in the list"]
 
-
 metadata = {
     "protocolName": "Base Distributor",
     "author": "ikeda042",
@@ -63,9 +62,6 @@ class BaseDistributor:
         self.right_pipette: protocol_api.InstrumentContext = (
             labware_loader.load_pipette("p300_multi_gen2", self.tiprack, "right")
         )
-        self.left_pipette: protocol_api.InstrumentContext = labware_loader.load_pipette(
-            "p300_multi_gen2", self.tiprack, "left"
-        )
         self.reservoir: protocol_api.labware.Labware = labware_loader.load_plate(
             "corning_96_wellplate_360ul_flat", "1"
         )
@@ -73,14 +69,16 @@ class BaseDistributor:
             "corning_96_wellplate_360ul_flat", "3"
         )
 
-    def distribute(self) -> None:
+    def distribute(self, aspirate_height: float) -> None:
         self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A1"])
         for n in range(1, 13):
-            self.right_pipette.aspirate(100, self.reservoir.wells_by_name()["A1"])
+            self.right_pipette.aspirate(
+                100, self.reservoir.wells_by_name()["A1"].bottom(aspirate_height)
+            )
             self.right_pipette.dispense(100, self.microplate.wells_by_name()[f"A{n}"])
         self.right_pipette.drop_tip(self.tiprack.wells_by_name()["A1"])
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
     ot_protocol = BaseDistributor(protocol)
-    ot_protocol.distribute()
+    ot_protocol.distribute(aspirate_height=2.0)
