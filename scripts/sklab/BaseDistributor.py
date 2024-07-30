@@ -4,12 +4,14 @@ import requests
 from datetime import datetime, timedelta, timezone
 from typing import Annotated
 
-JST: timezone = timezone(timedelta(hours=+9))
-# define slot type
-SLOT = Annotated[
+Jst: timezone = timezone(timedelta(hours=+9))
+Slot = Annotated[
     Literal["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
     "value should be between 1 and 12",
 ]
+PlateType = Annotated[Literal["corning_96_wellplate_360ul_flat"], "value should be in the list"]
+
+
 metadata = {
     "protocolName": "Base Distributor",
     "author": "ikeda042",
@@ -27,6 +29,11 @@ class LabwareLoader:
         tiprack_type: Literal[
             "opentrons_96_tiprack_300ul", "opentrons_96_tiprack_20ul"
         ],
-        slot: Literal["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+        slot: SLOT,
     ) -> protocol_api.labware.Labware:
         return self.protocol.load_labware(tiprack_type, slot)
+
+    def load_plate(
+            self,
+            plate_type
+    )
