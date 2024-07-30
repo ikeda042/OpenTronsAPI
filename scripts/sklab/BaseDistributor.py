@@ -88,14 +88,15 @@ class BaseDistributor:
 
     def distribute(self, aspirate_height_in_mm: float | None = 10.0) -> None:
         self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A1"])
-        for i, j in zip(self.plates_to_use, self.dist_amounts):
+        for n, j in zip(self.dist_amounts):
             for n in range(1, 13):
                 self.right_pipette.aspirate(
                     j,
                     self.reservoir.wells_by_name()["A7"].bottom(aspirate_height_in_mm),
                 )
-                self.right_pipette.dispense(j, self.microplate.wells_by_name()[f"A{n}"])
-            self.right_pipette.drop_tip(self.tiprack.wells_by_name()["A1"])
+                self.right_pipette.dispense(
+                    j, self.microplates[n].wells_by_name()[f"A{n}"]
+                )
         # for n in range(1, 13):
         #     self.right_pipette.aspirate(
         #         100, self.reservoir.wells_by_name()["A7"].bottom(aspirate_height_in_mm)
