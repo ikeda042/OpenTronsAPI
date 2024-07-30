@@ -37,13 +37,6 @@
 4. `Tip Length calibration`および`Pipette Offset calibration`の２つについて、Recalibrateを選択してキャリブレーションを行う。操作の指示は画面に出てくるためここでは省略する。
 
 
-
-
-
-## プロトコルの作成
-
-書きかけ
-
 ### API情報の確認
 
 1. [OpenTrons公式サイト](https://docs.opentrons.com/v2/versioning.html)でAPIバージョンを確認する。本ドキュメントではAPIバージョンを2.18に固定する。
