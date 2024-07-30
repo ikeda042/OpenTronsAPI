@@ -77,7 +77,7 @@ class BaseDistributor:
         self.right_pipette: protocol_api.InstrumentContext = (
             labware_loader.load_pipette("p300_multi_gen2", self.tiprack, "right")
         )
-        self.right_pipette.default_speed = 300
+        self.right_pipette.default_speed = 450
 
         self.reservoir: protocol_api.labware.Labware = labware_loader.load_plate(
             "corning_96_wellplate_360ul_flat", "1"
