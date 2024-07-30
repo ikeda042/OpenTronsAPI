@@ -80,3 +80,8 @@ class BaseDistributor:
             self.right_pipette.aspirate(100, self.reservoir.wells()["A1"])
             self.right_pipette.dispense(100, self.microplate.wells()[f"A{n}"])
         self.right_pipette.drop_tip(self.tiprack.wells_by_name()["A1"])
+
+
+def run(protocol: protocol_api.ProtocolContext) -> None:
+    ot_protocol = BaseDistributor(protocol)
+    ot_protocol.distribute()
