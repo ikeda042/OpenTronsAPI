@@ -97,6 +97,7 @@ class BaseDistributor:
                 self.right_pipette.dispense(
                     j, self.microplates[n].wells_by_name()[f"A{n}"]
                 )
+        self.right_pipette.drop_tip(self.tiprack.wells_by_name()["A1"])
         # for n in range(1, 13):
         #     self.right_pipette.aspirate(
         #         100, self.reservoir.wells_by_name()["A7"].bottom(aspirate_height_in_mm)
