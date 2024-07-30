@@ -69,7 +69,7 @@ class BaseDistributor:
             "corning_96_wellplate_360ul_flat", "3"
         )
 
-    def distribute(self, aspirate_height: float) -> None:
+    def distribute(self, aspirate_height: float | None = 2.0) -> None:
         self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A1"])
         for n in range(1, 13):
             self.right_pipette.aspirate(
