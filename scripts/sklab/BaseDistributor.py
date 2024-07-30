@@ -70,3 +70,6 @@ class BaseDistributor:
         self.reservoir: protocol_api.labware.Labware = labware_loader.load_plate(
             "corning_96_wellplate_360ul_flat", "1"
         )
+        self.microplate: protocol_api.labware.Labware = labware_loader.load_plate(
+            "corning_96_wellplate_360ul_flat", "2"
+        )
