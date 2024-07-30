@@ -1,7 +1,6 @@
 from opentrons import protocol_api
 from typing import Literal
-import requests
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta, timezone
 from typing import Annotated
 
 Jst: timezone = timezone(timedelta(hours=+9))
