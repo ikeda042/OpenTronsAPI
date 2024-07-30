@@ -53,3 +53,9 @@ class LabwareLoader:
         mount: Mount,
     ) -> protocol_api.InstrumentContext:
         return self.protocol.load_instrument(pipette_type, mount, tip_racks=[tiprack])
+
+
+class BaseDistributor:
+    def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
+        self.protocol = protocol
+        labware_loader: LabwareLoader = LabwareLoader(protocol)
