@@ -57,7 +57,6 @@ class LabwareLoader:
 
 class BaseDistributor:
     def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
-        self.protocol: protocol_api.ProtocolContext = protocol
         labware_loader: LabwareLoader = LabwareLoader(protocol)
         self.tiprack: protocol_api.labware.Labware = labware_loader.get_tiprack(
             "opentrons_96_tiprack_300ul", "1"
