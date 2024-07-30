@@ -27,7 +27,7 @@ metadata = {
     "apiLevel": "2.18",
 }
 ## Base settings
-use_plates: list[Slot] = ["1", "3"]
+use_plates: list[PlateIndex] = ["4", "5", "7", "8", "10", "11"]
 
 
 class LabwareLoader:
