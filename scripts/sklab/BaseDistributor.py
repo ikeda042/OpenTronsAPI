@@ -59,7 +59,7 @@ class BaseDistributor:
     def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
         labware_loader: LabwareLoader = LabwareLoader(protocol)
         self.tiprack: protocol_api.labware.Labware = labware_loader.get_tiprack(
-            "opentrons_96_tiprack_300ul", "1"
+            "opentrons_96_tiprack_300ul", "9"
         )
         self.right_pipette: protocol_api.InstrumentContext = (
             labware_loader.load_pipette("p300_multi_gen2", self.tiprack, "right")
@@ -71,12 +71,11 @@ class BaseDistributor:
             "corning_96_wellplate_360ul_flat", "1"
         )
         self.microplate: protocol_api.labware.Labware = labware_loader.load_plate(
-            "corning_96_wellplate_360ul_flat", "2"
+            "corning_96_wellplate_360ul_flat", "3"
         )
 
     def distribute(self) -> None:
         self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A1"])
-        self.left_pipette.pick_up_tip()
         for i in range(0, 12):
             self.right_pipette.aspirate(100, self.reservoir.wells()[i])
             self.right_pipette.dispense(50, self.microplate.wells()[i])
