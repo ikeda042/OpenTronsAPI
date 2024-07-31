@@ -111,12 +111,16 @@ class Keio0731:
                 self.right_pipette.aspirate(
                     j,
                     self.reservoir.wells_by_name()["A7"].bottom(aspirate_height_in_mm),
+                    rate=0.7,
                 )
                 self.right_pipette.dispense(
-                    j, self.microplates[n].wells_by_name()[f"A{w}"]
+                    j,
+                    self.microplates[n].wells_by_name()[f"A{w}"],
+                    rate=0.7,
                 )
                 self.right_pipette.blow_out()
         # self.right_pipette.drop_tip(self.tiprack.wells_by_name()["A1"])
+        self.right_pipette.drop_tip()
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
