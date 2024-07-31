@@ -112,11 +112,11 @@ class Dist50to2:
                     )
                     self.right_pipette.blow_out()
                 self.right_pipette.aspirate(
-                    j,
+                    50,
                     self.reservoir.wells_by_name()["A7"].bottom(aspirate_height_in_mm),
                 )
                 self.right_pipette.dispense(
-                    j,
+                    50,
                     self.microplates[n].wells_by_name()[f"A{w}"],
                 )
                 self.right_pipette.blow_out()
