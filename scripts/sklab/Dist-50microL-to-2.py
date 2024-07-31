@@ -107,7 +107,7 @@ class Dist50to2:
                     self.right_pipette.dispense(
                         j, self.reservoir.wells_by_name()[f"A7"]
                     )
-                self.right_pipette.blow_out()
+                    self.right_pipette.blow_out()
                 self.right_pipette.aspirate(
                     j,
                     self.reservoir.wells_by_name()["A7"].bottom(aspirate_height_in_mm),
