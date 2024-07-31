@@ -94,7 +94,7 @@ class Dist50to2:
             )
 
     def distribute(self, aspirate_height_in_mm: float | None = 10.0) -> None:
-        self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A4"])
+        self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A5"])
         for n, j in enumerate(self.dist_amounts):
             for w in range(1, 2):
                 for i in range(3):
@@ -120,8 +120,8 @@ class Dist50to2:
                     self.microplates[n].wells_by_name()[f"A{w}"],
                 )
                 self.right_pipette.blow_out()
-        # self.right_pipette.drop_tip(self.tiprack.wells_by_name()["A1"])
-        self.right_pipette.drop_tip()
+        self.right_pipette.drop_tip(self.tiprack.wells_by_name()["A1"])
+        # self.right_pipette.drop_tip()
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
