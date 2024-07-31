@@ -94,7 +94,7 @@ class Dist50to2:
             )
 
     def distribute(self, aspirate_height_in_mm: float | None = 10.0) -> None:
-        self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A2"])
+        self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A4"])
         for n, j in enumerate(self.dist_amounts):
             for w in range(1, 2):
                 for i in range(3):
