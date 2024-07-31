@@ -23,7 +23,7 @@ Mount = Annotated[Literal["left", "right"], "value should be in the list"]
 metadata = {
     "protocolName": "Base Distributor",
     "author": "ikeda042",
-    "description": "分注プロトコル(リザーバーから)",
+    "description": "分注プロトコル(リザーバーからスロット２に50マイクロずつ分注)",
     "apiLevel": "2.18",
 }
 
@@ -63,7 +63,7 @@ dist_amounts: list[int] = [100, 100, 100, 100, 100, 100]
 plates_to_use: list[PlateIndex] = [str(i) for i in plates_to_use]
 
 
-class Keio0731:
+class Dist50to2:
     def __init__(
         self,
         protocol: protocol_api.ProtocolContext,
@@ -124,5 +124,5 @@ class Keio0731:
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
-    ot_protocol = Keio0731(protocol)
+    ot_protocol = Dist50to2(protocol)
     ot_protocol.distribute(aspirate_height_in_mm=5.0)
