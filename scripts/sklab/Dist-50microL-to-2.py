@@ -58,8 +58,8 @@ class LabwareLoader:
 
 
 ## Base settings
-plates_to_use: list[int] = [4, 5, 7, 8, 10, 11]
-dist_amounts: list[int] = [100, 100, 100, 100, 100, 100]
+plates_to_use: list[int] = [2]
+dist_amounts: list[int] = [50]
 plates_to_use: list[PlateIndex] = [str(i) for i in plates_to_use]
 
 
