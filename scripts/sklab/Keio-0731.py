@@ -97,6 +97,17 @@ class Keio0731:
         self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A1"])
         for n, j in enumerate(self.dist_amounts):
             for w in range(1, 2):
+                for i in range(3):
+                    self.right_pipette.aspirate(
+                        j,
+                        self.reservoir.wells_by_name()["A7"].bottom(
+                            aspirate_height_in_mm
+                        ),
+                    )
+                    self.right_pipette.dispense(
+                        j, self.reservoir.wells_by_name()[f"A7"]
+                    )
+                self.right_pipette.blow_out()
                 self.right_pipette.aspirate(
                     j,
                     self.reservoir.wells_by_name()["A7"].bottom(aspirate_height_in_mm),
@@ -104,6 +115,7 @@ class Keio0731:
                 self.right_pipette.dispense(
                     j, self.microplates[n].wells_by_name()[f"A{w}"]
                 )
+                self.right_pipette.blow_out()
         self.right_pipette.drop_tip(self.tiprack.wells_by_name()["A1"])
 
 
