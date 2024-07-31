@@ -67,8 +67,8 @@ class Dist50to2:
     def __init__(
         self,
         protocol: protocol_api.ProtocolContext,
-        plates_to_use: list[PlateIndex] = ["4", "5", "7", "8", "10", "11"],
-        dist_amounts: list[int] = [100, 100, 100, 100, 100, 100],
+        plates_to_use: list[PlateIndex],
+        dist_amounts: list[int],
     ) -> None:
         labware_loader: LabwareLoader = LabwareLoader(protocol)
         self.tiprack: protocol_api.labware.Labware = labware_loader.get_tiprack(
@@ -94,7 +94,7 @@ class Dist50to2:
             )
 
     def distribute(self, aspirate_height_in_mm: float | None = 10.0) -> None:
-        self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A1"])
+        self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A2"])
         for n, j in enumerate(self.dist_amounts):
             for w in range(1, 13):
                 for i in range(3):
@@ -124,5 +124,5 @@ class Dist50to2:
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
-    ot_protocol = Dist50to2(protocol)
+    ot_protocol = Dist50to2(protocol, plates_to_use, dist_amounts)
     ot_protocol.distribute(aspirate_height_in_mm=5.0)
