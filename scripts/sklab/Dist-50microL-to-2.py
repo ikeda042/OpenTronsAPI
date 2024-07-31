@@ -97,20 +97,20 @@ class Dist50to2:
         self.right_pipette.pick_up_tip(self.tiprack.wells_by_name()["A5"])
         for n, j in enumerate(self.dist_amounts):
             for w in range(1, 2):
-                for i in range(3):
-                    self.right_pipette.aspirate(
-                        j,
-                        self.reservoir.wells_by_name()["A7"].bottom(
-                            aspirate_height_in_mm
-                        ),
-                    )
-                    self.right_pipette.dispense(
-                        j,
-                        self.reservoir.wells_by_name()[f"A7"].bottom(
-                            aspirate_height_in_mm
-                        ),
-                    )
-                    self.right_pipette.blow_out()
+                # for i in range(3):
+                #     self.right_pipette.aspirate(
+                #         j,
+                #         self.reservoir.wells_by_name()["A7"].bottom(
+                #             aspirate_height_in_mm
+                #         ),
+                #     )
+                #     self.right_pipette.dispense(
+                #         j,
+                #         self.reservoir.wells_by_name()[f"A7"].bottom(
+                #             aspirate_height_in_mm
+                #         ),
+                #     )
+                #     self.right_pipette.blow_out()
                 self.right_pipette.aspirate(
                     50,
                     self.reservoir.wells_by_name()["A7"].bottom(aspirate_height_in_mm),
