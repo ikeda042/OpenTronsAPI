@@ -45,7 +45,7 @@ class Slot(Enum):
     SLOT_11 = "11"
     SLOT_12 = "12"
 
-
+class 
 class LabwareLoader:
     def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
         self.protocol = protocol
