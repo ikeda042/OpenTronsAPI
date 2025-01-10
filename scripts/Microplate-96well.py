@@ -61,6 +61,17 @@ class Colunm(Enum):
     Colunm_12 = "12"
 
 
+class Row(Enum):
+    Row_A = "A"
+    Row_B = "B"
+    Row_C = "C"
+    Row_D = "D"
+    Row_E = "E"
+    Row_F = "F"
+    Row_G = "G"
+    Row_H = "H"
+
+
 class LabwareLoader:
     def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
         self.protocol = protocol
