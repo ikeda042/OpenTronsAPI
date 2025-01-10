@@ -27,6 +27,11 @@ class PipetteType(Enum):
     P20_MULTI_GEN2 = "p20_multi_gen2"
 
 
+class MountType(Enum):
+    LEFT = "left"
+    RIGHT = "right"
+
+
 class Slot(Enum):
     SLOT_1 = "1"
     SLOT_2 = "2"
@@ -48,26 +53,23 @@ class LabwareLoader:
 
     def get_tiprack(
         self,
-        tiprack_type: Literal[
-            TiprackType.OPENTRONS_96_TIPRACK_300UL,
-            TiprackType.OPENTRONS_96_TIPRACK_20UL,
-        ],
+        tiprack_type: TiprackType,
         slot: Slot,
     ) -> protocol_api.labware.Labware:
         return self.protocol.load_labware(tiprack_type, slot)
 
     def load_plate(
         self,
-        plate_type: Literal[PlateType.CORNING_96_WELLPLATE_360UL_FLAT],
+        plate_type: PlateType,
         slot: Slot,
     ) -> protocol_api.labware.Labware:
         return self.protocol.load_labware(plate_type, slot)
 
     def load_pipette(
         self,
-        pipette_type: Literal[PipetteType.P300_MULTI_GEN2, PipetteType.P20_MULTI_GEN2],
+        pipette_type: PipetteType,
         tiprack: protocol_api.labware.Labware,
-        mount: Literal["left", "right"],
+        mount: MountType,
     ) -> protocol_api.InstrumentContext:
         return self.protocol.load_instrument(pipette_type, mount, tip_racks=[tiprack])
 
@@ -78,9 +80,11 @@ class OpenTronsProtocol:
         self.labware_loader = LabwareLoader(protocol)
 
     def exec(self) -> None:
-        tiprack = self.labware_loader.get_tiprack("opentrons_96_tiprack_300ul", "7")
+        tiprack = self.labware_loader.get_tiprack(
+            TiprackType.OPENTRONS_96_TIPRACK_300UL, Slot.SLOT_7
+        )
         right_pipette = self.labware_loader.load_pipette(
-            "p300_multi_gen2", tiprack, "right"
+            PipetteType.P300_MULTI_GEN2, tiprack, "right"
         )
         pool = self.labware_loader.load_plate("corning_96_wellplate_360ul_flat", "6")
         microplate = self.labware_loader.load_plate(
