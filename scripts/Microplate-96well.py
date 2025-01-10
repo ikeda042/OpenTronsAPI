@@ -86,9 +86,11 @@ class OpenTronsProtocol:
         right_pipette = self.labware_loader.load_pipette(
             PipetteType.P300_MULTI_GEN2, tiprack, "right"
         )
-        pool = self.labware_loader.load_plate("corning_96_wellplate_360ul_flat", "6")
+        pool = self.labware_loader.load_plate(
+            PlateType.CORNING_96_WELLPLATE_360UL_FLAT, Slot.SLOT_6
+        )
         microplate = self.labware_loader.load_plate(
-            "corning_96_wellplate_360ul_flat", "2"
+            PlateType.CORNING_96_WELLPLATE_360UL_FLAT, Slot.SLOT_2
         )
 
         self.perform_pipetting_cycle(
