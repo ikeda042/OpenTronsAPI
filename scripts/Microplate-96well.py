@@ -1,7 +1,7 @@
 from opentrons import protocol_api
 from typing import Literal
-import requests
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta, timezone
+from enum import Enum
 
 JST: timezone = timezone(timedelta(hours=+9))
 
@@ -13,6 +13,20 @@ metadata = {
 }
 
 
+class TiprackType(Enum):
+    OPENTRONS_96_TIPRACK_300UL = "opentrons_96_tiprack_300ul"
+    OPENTRONS_96_TIPRACK_20UL = "opentrons_96_tiprack_20ul"
+
+
+class PlateType(Enum):
+    CORNING_96_WELLPLATE_360UL_FLAT = "corning_96_wellplate_360ul_flat"
+
+
+class PipetteType(Enum):
+    P300_MULTI_GEN2 = "p300_multi_gen2"
+    P20_MULTI_GEN2 = "p20_multi_gen2"
+
+
 class LabwareLoader:
     def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
         self.protocol = protocol
@@ -20,7 +34,8 @@ class LabwareLoader:
     def get_tiprack(
         self,
         tiprack_type: Literal[
-            "opentrons_96_tiprack_300ul", "opentrons_96_tiprack_20ul"
+            TiprackType.OPENTRONS_96_TIPRACK_300UL,
+            TiprackType.OPENTRONS_96_TIPRACK_20UL,
         ],
         slot: Literal["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
     ) -> protocol_api.labware.Labware:
@@ -28,14 +43,14 @@ class LabwareLoader:
 
     def load_plate(
         self,
-        plate_type: Literal["corning_96_wellplate_360ul_flat"],
+        plate_type: Literal[PlateType.CORNING_96_WELLPLATE_360UL_FLAT],
         slot: Literal["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
     ) -> protocol_api.labware.Labware:
         return self.protocol.load_labware(plate_type, slot)
 
     def load_pipette(
         self,
-        pipette_type: Literal["p300_multi_gen2", "p20_multi_gen2"],
+        pipette_type: Literal[PipetteType.P300_MULTI_GEN2, PipetteType.P20_MULTI_GEN2],
         tiprack: protocol_api.labware.Labware,
         mount: Literal["left", "right"],
     ) -> protocol_api.InstrumentContext:
