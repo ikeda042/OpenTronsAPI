@@ -45,7 +45,22 @@ class Slot(Enum):
     SLOT_11 = "11"
     SLOT_12 = "12"
 
-class 
+
+class Colunm(Enum):
+    Colunm_1 = "1"
+    Colunm_2 = "2"
+    Colunm_3 = "3"
+    Colunm_4 = "4"
+    Colunm_5 = "5"
+    Colunm_6 = "6"
+    Colunm_7 = "7"
+    Colunm_8 = "8"
+    Colunm_9 = "9"
+    Colunm_10 = "10"
+    Colunm_11 = "11"
+    Colunm_12 = "12"
+
+
 class LabwareLoader:
     def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
         self.protocol = protocol
