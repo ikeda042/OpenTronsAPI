@@ -27,6 +27,21 @@ class PipetteType(Enum):
     P20_MULTI_GEN2 = "p20_multi_gen2"
 
 
+class Slot(Enum):
+    SLOT_1 = "1"
+    SLOT_2 = "2"
+    SLOT_3 = "3"
+    SLOT_4 = "4"
+    SLOT_5 = "5"
+    SLOT_6 = "6"
+    SLOT_7 = "7"
+    SLOT_8 = "8"
+    SLOT_9 = "9"
+    SLOT_10 = "10"
+    SLOT_11 = "11"
+    SLOT_12 = "12"
+
+
 class LabwareLoader:
     def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
         self.protocol = protocol
@@ -37,14 +52,14 @@ class LabwareLoader:
             TiprackType.OPENTRONS_96_TIPRACK_300UL,
             TiprackType.OPENTRONS_96_TIPRACK_20UL,
         ],
-        slot: Literal["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+        slot: Slot,
     ) -> protocol_api.labware.Labware:
         return self.protocol.load_labware(tiprack_type, slot)
 
     def load_plate(
         self,
         plate_type: Literal[PlateType.CORNING_96_WELLPLATE_360UL_FLAT],
-        slot: Literal["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+        slot: Slot,
     ) -> protocol_api.labware.Labware:
         return self.protocol.load_labware(plate_type, slot)
 
