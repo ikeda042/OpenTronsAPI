@@ -43,7 +43,6 @@ class Slot(Enum):
     SLOT_9 = "9"
     SLOT_10 = "10"
     SLOT_11 = "11"
-    SLOT_12 = "12"
 
 
 class Colunm(Enum):
