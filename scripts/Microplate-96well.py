@@ -1,5 +1,4 @@
 from opentrons import protocol_api
-from typing import Literal
 from datetime import timedelta, timezone
 from enum import Enum
 
