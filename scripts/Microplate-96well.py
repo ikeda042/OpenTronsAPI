@@ -42,32 +42,10 @@ class LabwareLoader:
         return self.protocol.load_instrument(pipette_type, mount, tip_racks=[tiprack])
 
 
-class Messenger:
-    def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
-        self.protocol = protocol
-
-    def send_message(self, message: str) -> None:
-        url = (
-            "http://localhost:8000/send_message"
-            if self.protocol.is_simulating()
-            else "http://10.32.17.122:8000/send_message"
-        )
-        try:
-            response = requests.post(url, json={"message": message})
-            response.raise_for_status()
-        except requests.exceptions.RequestException as e:
-            print(f"Request failed: {e}")
-
-    @staticmethod
-    def get_current_time() -> str:
-        return datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S")
-
-
 class OpenTronsProtocol:
     def __init__(self, protocol: protocol_api.ProtocolContext) -> None:
         self.protocol = protocol
         self.labware_loader = LabwareLoader(protocol)
-        self.messenger = Messenger(protocol)
 
     def exec(self) -> None:
         tiprack = self.labware_loader.get_tiprack("opentrons_96_tiprack_300ul", "7")
@@ -79,18 +57,11 @@ class OpenTronsProtocol:
             "corning_96_wellplate_360ul_flat", "2"
         )
 
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()}* 分注操作を開始します。"
-        )
         self.perform_pipetting_cycle(
             right_pipette,
             tiprack,
             pool,
             microplate,
-        )
-
-        self.messenger.send_message(
-            f"*{self.messenger.get_current_time()}* 全ての処理が完了しました。"
         )
 
     def perform_pipetting_cycle(
@@ -101,24 +72,12 @@ class OpenTronsProtocol:
         plate: protocol_api.labware.Labware,
     ) -> None:
         pipette.pick_up_tip(tiprack.wells_by_name()["A1"])
-        # self.messenger.send_message(
-        #     f"*{self.messenger.get_current_time()}* 区画7のラックの1列目からチップを取りました。"
-        # )
         for n in range(1, 13):
             pipette.aspirate(150, pool.wells_by_name()["A1"])
-            # self.messenger.send_message(
-            #     f"*{self.messenger.get_current_time()}* 区画6の培地プールから8つのピペット全てに150uLの培地を吸引しました。"
-            # )
 
             pipette.dispense(150, plate.wells_by_name()[f"A{n}"])
-            # self.messenger.send_message(
-            #     f"*{self.messenger.get_current_time()}* 区画2のマイクロプレートリーダーの{n}列目の全ウェルに150uLの溶液を移動しました。"
-            # )
 
         pipette.drop_tip(tiprack.wells_by_name()["A1"])
-        # self.messenger.send_message(
-        #     f"*{self.messenger.get_current_time()}* チップを区画7のラックの1列目に戻しました。"
-        # )
 
 
 def run(protocol: protocol_api.ProtocolContext) -> None:
